@@ -1,0 +1,108 @@
+# Default values for privatebin.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: privatebin/nginx-fpm-alpine
+  pullPolicy: IfNotPresent
+  tag: ""
+
+persistence:
+  enabled: false
+  capacity: 10Gi
+  storageclassname: ""
+
+# For More Information about config Options, take a look at [configmap.yaml](./template/configmap.yaml)
+config:
+  # name: "privatebin"
+  # discussion: true
+  # opendiscussion: false
+  # enablepassword: true
+  # fileupload: false
+  # burnafterreadingselected: false
+  # defaultformatter: "plaintext"
+  # syntaxhighlightingtheme: "sons-of-obsidian"
+  # sizelimit: 10485760
+  # template: "bootstrap"
+  # info: "More information on the <a href='https://privatebin.info/'>project page</a>."
+  # notice: "Note: This is a test service: Data may be deleted anytime. Kittens will die if you abuse this service."
+  # languageselection: false
+  # languagedefault: "en"
+  # urlshortener: "https://shortener.example.com/api?link="
+  # qrcode: true
+  # icon: "none"
+  # cspheader: [...]
+  # zerobincompatibility: false
+  # httpwarning: true
+  # compression: "zlib"
+  # defaultexpire: "1week"
+  # formatterOptions:
+  #   # plaintext: "Plain Text"
+  #   # syntaxhighlighting: "Source Code"
+  #   # markdown: "Markdown"
+  # limit: 10
+  # header: "X_FORWARDED_FOR"
+  # purgelimit: 300
+  # batchsize: 10
+
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 64Mi
+
+podAnnotations: {}
+
+podSecurityContext:
+  fsGroup: 65534
+
+securityContext:
+  runAsUser: 65534
+  runAsGroup: 82
+  readOnlyRootFilesystem: true
+  privileged: false
+  allowPrivilegeEscalation: false
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: chart-example.local
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

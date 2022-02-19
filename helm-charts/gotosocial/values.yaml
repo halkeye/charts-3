@@ -43,7 +43,7 @@ gotosocial:
     enabled: false
     accessMode: "ReadWriteOnce"
     size: "10Gi"
-    # storageClass: "-"
+    #storageClass: ""
   config:
     #logLevel: "info"
     #applicationName: "gotosocial"

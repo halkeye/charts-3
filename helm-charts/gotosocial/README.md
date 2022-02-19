@@ -10,6 +10,11 @@ kubectl create ns gts-test
 kubectl create secret generic gts-postgresql-secret --from-literal="password=$(openssl rand -hex 32)" --from-literal="postgres-password=$(openssl rand -hex 32)" -n gts-test
 ```
 ### Deploy Helm Chart
+```shell
+helm repo add 0hlov3 http://schoenwald.me/helm-charts/
+helm repo update
+helm upgrade --install gotosocial 0hlov3/gotosocial --namespace gotosocial --create-namespace --set gotosocial.config.host='domain.tld' --set gotosocial.config.accountDomain='domain.tld'
+```
 
 ### Create first User
 ```shell

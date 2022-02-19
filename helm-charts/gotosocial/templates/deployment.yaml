@@ -1,0 +1,101 @@
+{{- $fullName := include "gotosocial.fullname" . -}}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $fullName }}
+  labels:
+    {{- include "gotosocial.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "gotosocial.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "gotosocial.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "gotosocial.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args: ["--config-path", "/config/config.yaml"]
+          ports:
+            - name: gotosocial
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: gotosocial
+          readinessProbe:
+            httpGet:
+              path: /
+              port: gotosocial
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          env:
+          {{- if .Values.postgresql.enabled }}
+            - name: GTS_DB_TYPE
+              value: postgres
+            - name: GTS_DB_ADDRESS
+              value: "{{ $fullName }}-postgresql"
+            - name: GTS_DB_PORT
+              value: "5432"
+            - name: GTS_DB_USER
+              value: "{{ .Values.postgresql.auth.username }}"
+            - name: GTS_DB_DATABASE
+              value: "{{ .Values.postgresql.auth.database }}"
+            - name: GTS_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.postgresql.auth.existingSecret }}
+                  key: password
+          {{- end }}
+          volumeMounts:
+            - name: gotosocial-config
+              mountPath: "/config/"
+              readOnly: true
+            {{- if .Values.gotosocial.persistence.enabled }}
+            - name: gotosocial-data
+              mountPath: "/gotosocial/storage/"
+              readOnly: false
+            {{- end }}
+      volumes:
+        - name: gotosocial-config
+          configMap:
+            name: {{ $fullName }}
+            items:
+            - key: "config.yaml"
+              path: "config.yaml"
+        {{- if .Values.gotosocial.persistence.enabled }}
+        - name: gotosocial-data
+          persistentVolumeClaim:
+            claimName: {{ $fullName }}-data
+        {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

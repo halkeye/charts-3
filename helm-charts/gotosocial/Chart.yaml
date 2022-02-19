@@ -1,0 +1,22 @@
+apiVersion: v2
+name: gotosocial
+description: A Helm chart for Kubernetes
+icon: https://docs.gotosocial.org/en/latest/assets/sloth.png
+home: https://github.com/0hlov3/helm-charts/charts/gotosocial
+
+type: application
+# Chart Version
+version: "0.0.1"
+# gotosocial version
+appVersion: "0.2.0"
+
+maintainers:
+  - name: Olaf Schönwald
+    email: 0hlov3@protonmail.com
+    url: https://schoenwald.me
+
+dependencies:
+  - name: postgresql
+    version: ~11.0.06
+    repository: https://charts.bitnami.com/bitnami
+    condition: postgresql.enabled

@@ -1,20 +1,42 @@
 apiVersion: v1
 entries:
+  gotosocial:
+  - apiVersion: v2
+    appVersion: 0.2.0
+    created: "2022-02-19T15:11:52.761998+01:00"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: ~11.0.06
+    description: A Helm chart for Kubernetes
+    digest: 129380b57d0a77c3419e7a463ea18fb0ca7fa42604bbb6fe68ca217c9de38889
+    home: https://github.com/0hlov3/helm-charts/charts/gotosocial
+    icon: https://docs.gotosocial.org/en/latest/assets/sloth.png
+    maintainers:
+    - email: 0hlov3@protonmail.com
+      name: Olaf Schönwald
+      url: https://schoenwald.me
+    name: gotosocial
+    type: application
+    urls:
+    - http://schoenwald.me/helm-charts/gotosocial-0.0.1.tgz
+    version: 0.0.1
   privatebin:
   - apiVersion: v2
     appVersion: 1.3.5
-    created: "2022-02-07T21:27:47.458364+01:00"
+    created: "2022-02-19T15:11:52.762756+01:00"
     description: A Helm chart for Kubernetes
-    digest: 27d62c9d01fe4c18e6a4914c961622ad6edb9547cf5cc33201df0cdb25b1987a
+    digest: fad5591648523277727c6ed75c288afcc3cd84f8c4bfb6872422f237ea7e0adb
     home: https://github.com/0hlov3/helm-charts/charts/privatebin
     icon: https://privatebin.info/img/logo.png
     maintainers:
     - email: 0hlov3@protonmail.com
       name: Olaf Schönwald
-      url: https://maxxblow.de
+      url: https://schoenwald.me
     name: privatebin
     type: application
     urls:
     - http://schoenwald.me/helm-charts/privatebin-0.1.0.tgz
     version: 0.1.0
-generated: "2022-02-07T21:27:47.455754+01:00"
+generated: "2022-02-19T15:11:52.753056+01:00"

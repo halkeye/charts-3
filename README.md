@@ -1,3 +1,4 @@
+[![CircleCI](https://circleci.com/gh/0hlov3/helm-charts/tree/main.svg?style=svg)](https://circleci.com/gh/0hlov3/helm-charts/tree/main)
 # helm-charts
 0hlov3s Public Helm Charts
 

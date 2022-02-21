@@ -7,8 +7,11 @@ jobs:
     steps:
       - checkout
       - run: 
-          name: "Install Helm"
-          command: "curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash"
+          name: "Install Dependencies"
+          command: |
+            curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash && \
+            apt update && \
+            apt install git
       - run:
           name: "Helm lint"
           command: "helm lint helm-charts/*"
@@ -21,8 +24,8 @@ jobs:
       - run:
           name: "Git config"
           command: |
-            "git config --global user.email '0hlov3@protonmail.com'" && \
-            "git config --global user.name 'CircleCI'"
+            git config user.email "0hlov3@protonmail.com" && \
+            git config user.name "CircleCI"
       - run:
           name: "Git add"
           command: "git add ."

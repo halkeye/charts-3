@@ -1,12 +1,9 @@
 version: 2.1
-executors:
-  helm-executor:
-    docker:
-      - image: ubuntu-2004:202111-02
 
 jobs:
   helm:
-    executor: helm-executor
+    machine:
+      image: ubuntu-2004:202111-02
     steps:
       - checkout
       - run: 

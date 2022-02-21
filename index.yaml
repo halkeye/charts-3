@@ -3,14 +3,14 @@ entries:
   gotosocial:
   - apiVersion: v2
     appVersion: 0.2.0
-    created: "2022-02-21T23:47:18.840208048Z"
+    created: "2022-02-21T23:47:54.268814614Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
       repository: https://charts.bitnami.com/bitnami
       version: ~11.0.06
     description: A Helm chart for Kubernetes
-    digest: 35d6bef369144250c55f56176b9bfc28c901928f69af6dfaf18a8d91de7a181e
+    digest: bef71039e1695a1dda36486a22f38712965ba95c577396ed74947a63c82bc508
     home: https://github.com/0hlov3/helm-charts/charts/gotosocial
     icon: https://docs.gotosocial.org/en/latest/assets/sloth.png
     maintainers:
@@ -24,7 +24,7 @@ entries:
     version: 0.0.2
   - apiVersion: v2
     appVersion: 0.2.0
-    created: "2022-02-21T23:47:18.832346743Z"
+    created: "2022-02-21T23:47:54.261324771Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -46,9 +46,9 @@ entries:
   privatebin:
   - apiVersion: v2
     appVersion: 1.3.5
-    created: "2022-02-21T23:47:18.841151427Z"
+    created: "2022-02-21T23:47:54.269608621Z"
     description: A Helm chart for Kubernetes
-    digest: 778f0d8521003576adc1f289e7ac1e92b87be6738121e972e868806ee33eb18f
+    digest: e469330bdd4422a48b576fcde8236bf362776f1d3c96eff3f4a7e77c3ed16e2a
     home: https://github.com/0hlov3/helm-charts/charts/privatebin
     icon: https://privatebin.info/img/logo.png
     maintainers:
@@ -60,4 +60,4 @@ entries:
     urls:
     - http://schoenwald.me/helm-charts/privatebin-0.1.0.tgz
     version: 0.1.0
-generated: "2022-02-21T23:47:18.825664958Z"
+generated: "2022-02-21T23:47:54.254569513Z"

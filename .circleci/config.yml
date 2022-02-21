@@ -19,6 +19,11 @@ jobs:
           name: "Helm repo index"
           command: "helm repo index --url http://schoenwald.me/helm-charts/ ."
       - run:
+          name: "Git config"
+          command: |
+            "git config --global user.email '0hlov3@protonmail.com'" && \
+            "git config --global user.name 'CircleCI'"
+      - run:
           name: "Git add"
           command: "git add ."
       - run:

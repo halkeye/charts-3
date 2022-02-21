@@ -9,9 +9,7 @@ jobs:
       - run: 
           name: "Install Dependencies"
           command: |
-            curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash && \
-            apt update && \
-            apt install git
+            curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
       - run:
           name: "Helm lint"
           command: "helm lint helm-charts/*"

@@ -35,7 +35,7 @@ jobs:
           command: "git commit -m 'Updates Helm Charts from CircleCI'"
       - run:
           name: "git push"
-          command: "git push --set-upstream origin circleci-project-setup"         
+          command: "git push"         
 
 workflows:
   helm-workflow:

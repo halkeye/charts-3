@@ -32,7 +32,7 @@ jobs:
           command: "git add ."
       - run:
           name: "Git commit"
-          command: "git commit -m 'Updates Helm Charts from CircleCI'"
+          command: "git commit -m '[skip ci] Updates Helm Charts from CircleCI'"
       - run:
           name: "git push"
           command: "git push"         

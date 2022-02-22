@@ -1,38 +1,98 @@
----
-name: Bug report
-about: Create a report to help us improve
-title: ''
-labels: ''
-assignees: ''
+name: Bug Report
+description: Create a report to help us improve
+title: "[name of the chart e.g. gotosocial] Issue Title"
+labels: [bug]
+assignees:
+  - 
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report! Please be cautious with the sensitive information/logs while filing the issue.
+  - type: textarea
+    id: desc
+    attributes:
+      label: Describe the bug a clear and concise description of what the bug is.
+    validations:
+      required: true
 
----
+  - type: input
+    id: helm-version
+    attributes:
+      label: What's your helm version?
+      description: Enter the output of `$ helm version`
+      placeholder: Copy paste the entire output of the above 
+    validations:
+      required: true
+  - type: input
+    id: kubectl-version
+    attributes:
+      label: What's your kubectl version?
+      description: Enter the output of `$ kubectl version`
+    validations:
+      required: true
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+  - type: input
+    id: chart-name
+    attributes:
+      label: Which chart?
+      description: Enter the name of the chart where you encountered this bug.
+    validations:
+      required: true
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+  - type: input
+    id: chart-version
+    attributes:
+      label: What's the chart version?
+      description: Enter the version of the chart that you encountered this bug.
+    validations:
+      required: true
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Enter exactly what happened.
+    validations:
+      required: false
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+  - type: textarea
+    id: what-expected
+    attributes:
+      label: What you expected to happen?
+      description: Enter what you expected to happen.
+    validations:
+      required: false
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+  - type: textarea
+    id: how-to-reproduce
+    attributes:
+      label: How to reproduce it?
+      description: As minimally and precisely as possible.
+    validations:
+      required: false
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+  - type: textarea
+    id: changed-values
+    attributes:
+      label: Enter the changed values of values.yaml?
+      description: Please enter only values which differ from the defaults. Enter `NONE` if nothing's changed.
+      placeholder: 'key: value'
+    validations:
+      required: false
 
-**Additional context**
-Add any other context about the problem here.
+  - type: textarea
+    id: helm-command
+    attributes:
+      label: Enter the command that you execute and failing/misfunctioning.
+      description: Enter the command as-is as how you executed.
+      placeholder: helm install my-release 0hlov3/name-of-chart --version version --values values.yaml
+    validations:
+      required: true
+
+  - type: textarea
+    id: anything-else
+    attributes:
+      label: Anything else we need to know?
+    validations:
+      required: false

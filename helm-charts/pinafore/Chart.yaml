@@ -1,6 +1,9 @@
 apiVersion: v2
 name: pinafore
-description: A Helm chart for Kubernetes
+description: Pinafore is an an alternative web client for Mastodon, focused on speed and simplicity.
+
+icon: https://raw.githubusercontent.com/nolanlawson/pinafore/master/src/static/sailboat-icon.svg
+home: https://github.com/nolanlawson/pinafore
 
 type: application
 # Chart Version

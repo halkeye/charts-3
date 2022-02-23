@@ -1,0 +1,17 @@
+apiVersion: v2
+name: pinafore
+description: Pinafore is an an alternative web client for Mastodon, focused on speed and simplicity.
+
+icon: https://raw.githubusercontent.com/nolanlawson/pinafore/master/src/static/sailboat-icon.svg
+home: https://github.com/nolanlawson/pinafore
+
+type: application
+# Chart Version
+version: "0.0.1"
+# gotosocial version
+appVersion: "v2.0.5"
+
+maintainers:
+  - name: Olaf Schönwald
+    email: 0hlov3@protonmail.com
+    url: https://schoenwald.me

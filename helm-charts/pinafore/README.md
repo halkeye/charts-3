@@ -1,5 +1,5 @@
 # Pinafore
-Install the (Pinafore)[https://github.com/nolanlawson/pinafore] web client for Mastodon & Gotosocial in Kubernetes.
+Install the [Pinafore](https://github.com/nolanlawson/pinafore) web client for Mastodon & Gotosocial in Kubernetes.
 
 ## Prerequisites
  - Kubernetes 1.16+
@@ -10,7 +10,7 @@ Install the (Pinafore)[https://github.com/nolanlawson/pinafore] web client for M
 helm repo add 0hlov3 http://schoenwald.me/helm-charts/
 helm repo update
 ```
-_See (helm repo)[https://helm.sh/docs/helm/helm_repo/] for command documentation._
+_See [helm repo](https://helm.sh/docs/helm/helm_repo/) for command documentation._
 
 ## Install Chart
 ```shell

@@ -3,14 +3,14 @@ entries:
   gotosocial:
   - apiVersion: v2
     appVersion: 0.2.0
-    created: "2022-02-22T22:34:12.926609004Z"
+    created: "2022-02-23T16:07:23.318959329Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
       repository: https://charts.bitnami.com/bitnami
       version: ~11.0.06
     description: A Helm chart for Kubernetes
-    digest: 24de78b03770e4f9d6160a8d2b4e54dc3dc1f0df4180d7e6a89088df98a4016f
+    digest: 97fbede130e688b3700e8cbec6781560cb7a4d3bb25d6a1f9674d32d7e2c8568
     home: https://github.com/0hlov3/helm-charts/charts/gotosocial
     icon: https://docs.gotosocial.org/en/latest/assets/sloth.png
     maintainers:
@@ -24,7 +24,7 @@ entries:
     version: 0.0.2
   - apiVersion: v2
     appVersion: 0.2.0
-    created: "2022-02-22T22:34:12.919666857Z"
+    created: "2022-02-23T16:07:23.311645294Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -43,12 +43,30 @@ entries:
     urls:
     - http://schoenwald.me/helm-charts/gotosocial-0.0.1.tgz
     version: 0.0.1
+  pinafore:
+  - apiVersion: v2
+    appVersion: v2.0.5
+    created: "2022-02-23T16:07:23.319615463Z"
+    description: Pinafore is an an alternative web client for Mastodon, focused on
+      speed and simplicity.
+    digest: f9f52f7e70dfb99770040573928bdd8e15921c95d531a24df8792fd4076150c0
+    home: https://github.com/nolanlawson/pinafore
+    icon: https://raw.githubusercontent.com/nolanlawson/pinafore/master/src/static/sailboat-icon.svg
+    maintainers:
+    - email: 0hlov3@protonmail.com
+      name: Olaf Schönwald
+      url: https://schoenwald.me
+    name: pinafore
+    type: application
+    urls:
+    - http://schoenwald.me/helm-charts/pinafore-0.0.1.tgz
+    version: 0.0.1
   privatebin:
   - apiVersion: v2
     appVersion: 1.3.5
-    created: "2022-02-22T22:34:12.927378924Z"
+    created: "2022-02-23T16:07:23.32034858Z"
     description: A Helm chart for Kubernetes
-    digest: 361a024299f21e1c354b3231d59b967f7fbaaaa79b72fc706c9e7ab20fc352b5
+    digest: b34ad21cd8c0aea0984d46eea8d1c0086ee04ce2019de0ab147f433698b6b922
     home: https://github.com/0hlov3/helm-charts/charts/privatebin
     icon: https://privatebin.info/img/logo.png
     maintainers:
@@ -60,4 +78,4 @@ entries:
     urls:
     - http://schoenwald.me/helm-charts/privatebin-0.1.0.tgz
     version: 0.1.0
-generated: "2022-02-22T22:34:12.913554272Z"
+generated: "2022-02-23T16:07:23.305112118Z"

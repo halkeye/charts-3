@@ -1,4 +1,5 @@
 [![CircleCI](https://circleci.com/gh/0hlov3/helm-charts/tree/main.svg?style=svg)](https://circleci.com/gh/0hlov3/helm-charts/tree/main)
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/ohlove)](https://artifacthub.io/packages/search?repo=ohlove)
 # helm-charts
 0hlov3s Public Helm Charts
 

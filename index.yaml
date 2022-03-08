@@ -2,8 +2,29 @@ apiVersion: v1
 entries:
   gotosocial:
   - apiVersion: v2
+    appVersion: 0.2.1
+    created: "2022-03-08T20:12:49.497635215Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: ~11.0.06
+    description: A Helm chart for Kubernetes
+    digest: 90a347f2a91d2f8c59404095b97e38f1b14a067ff0c7691cfe5b81767c222787
+    home: https://github.com/0hlov3/helm-charts/charts/gotosocial
+    icon: https://docs.gotosocial.org/en/latest/assets/sloth.png
+    maintainers:
+    - email: 0hlov3@protonmail.com
+      name: Olaf Schönwald
+      url: https://schoenwald.me
+    name: gotosocial
+    type: application
+    urls:
+    - http://schoenwald.me/helm-charts/gotosocial-0.0.3.tgz
+    version: 0.0.3
+  - apiVersion: v2
     appVersion: 0.2.0
-    created: "2022-02-23T16:07:23.318959329Z"
+    created: "2022-03-08T20:12:49.481720062Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -24,7 +45,7 @@ entries:
     version: 0.0.2
   - apiVersion: v2
     appVersion: 0.2.0
-    created: "2022-02-23T16:07:23.311645294Z"
+    created: "2022-03-08T20:12:49.469792956Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -46,10 +67,10 @@ entries:
   pinafore:
   - apiVersion: v2
     appVersion: v2.0.5
-    created: "2022-02-23T16:07:23.319615463Z"
+    created: "2022-03-08T20:12:49.498684209Z"
     description: Pinafore is an an alternative web client for Mastodon, focused on
       speed and simplicity.
-    digest: f9f52f7e70dfb99770040573928bdd8e15921c95d531a24df8792fd4076150c0
+    digest: bb05db74c16d046684ea621210f643528d5a1da451e26ed72fd842f850d1e244
     home: https://github.com/nolanlawson/pinafore
     icon: https://raw.githubusercontent.com/nolanlawson/pinafore/master/src/static/sailboat-icon.svg
     maintainers:
@@ -64,7 +85,24 @@ entries:
   privatebin:
   - apiVersion: v2
     appVersion: 1.3.5
-    created: "2022-02-23T16:07:23.32034858Z"
+    created: "2022-03-08T20:12:49.501289596Z"
+    description: PrivateBin is a minimalist, open source online pastebin where the
+      server has zero knowledge of pasted data.
+    digest: 34bd2d9df6b95fcfb919022dae4188f1e119170b8e1be5e7554c3914b822e15c
+    home: https://github.com/PrivateBin/PrivateBin
+    icon: https://privatebin.info/img/logo.png
+    maintainers:
+    - email: 0hlov3@protonmail.com
+      name: Olaf Schönwald
+      url: https://schoenwald.me
+    name: privatebin
+    type: application
+    urls:
+    - http://schoenwald.me/helm-charts/privatebin-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.3.5
+    created: "2022-03-08T20:12:49.499901221Z"
     description: A Helm chart for Kubernetes
     digest: b34ad21cd8c0aea0984d46eea8d1c0086ee04ce2019de0ab147f433698b6b922
     home: https://github.com/0hlov3/helm-charts/charts/privatebin
@@ -78,4 +116,4 @@ entries:
     urls:
     - http://schoenwald.me/helm-charts/privatebin-0.1.0.tgz
     version: 0.1.0
-generated: "2022-02-23T16:07:23.305112118Z"
+generated: "2022-03-08T20:12:49.457619847Z"

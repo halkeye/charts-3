@@ -6,9 +6,9 @@ home: https://github.com/0hlov3/helm-charts/charts/gotosocial
 
 type: application
 # Chart Version
-version: "0.0.2"
+version: "0.0.3"
 # gotosocial version
-appVersion: "0.2.0"
+appVersion: "0.2.1"
 
 maintainers:
   - name: Olaf Schönwald

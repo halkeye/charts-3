@@ -49,6 +49,7 @@ data:
     media-video-max-size: {{ .Values.gotosocial.config.media.videoMaxSize | default 10485760 }}
     media-description-min-chars: {{ .Values.gotosocial.config.media.descriptionMinChars | default 0 }}
     media-description-max-chars: {{ .Values.gotosocial.config.media.descriptionMaxChars | default 500 }}
+    media-remote-cache-days: {{ .Values.gotosocial.config.media.descriptionMaxChars | default 30 }}
     ##########################
     ##### STORAGE CONFIG #####
     ##########################

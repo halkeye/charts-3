@@ -1,0 +1,185 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "matrix-synapse.fullname" . }}
+  labels:
+    {{- include "matrix-synapse.labels" . | nindent 4 }}
+data:
+  log.yaml: |
+    version: 1
+    formatters:
+      precise:
+       format: '%(asctime)s - %(name)s - %(lineno)d - %(levelname)s - %(request)s- %(message)s'
+    filters:
+      context:
+        (): synapse.util.logcontext.LoggingContextFilter
+        request: ""
+    handlers:
+      console:
+        class: logging.StreamHandler
+        formatter: precise
+        filters: [context]
+        level: {{ .Values.config.logLevel | default "INFO" }}
+    loggers:
+        synapse:
+            level: {{ .Values.config.logLevel | default "INFO" }}
+    root:
+        level: {{ .Values.config.logLevel | default "INFO" }}
+        handlers: [console]
+  homeserver.yaml: |
+    ## Server ##
+    server_name: {{ required "You need to specify a serverName" .Values.serverName | quote }}
+    pid_file: /homeserver.pid
+    web_client: {{ .Values.config.webClient.enabled | default false }}
+    {{- if eq .Values.config.webClient.enabled true }}
+    web_client_location: {{ .Values.config.webClient.webClientLocation | default "https://element.example.com/" | quote }}
+    {{- end }}
+    public_baseurl: {{ .Values.config.publicBaseurl | default (printf "https://%s" (.Values.publicServerName | default .Values.serverName)) | quote }}
+    soft_file_limit: {{ .Values.config.softFileLimit | default 0 }}
+    presence:
+      enabled: {{ .Values.config.presence.enabled | default true }}
+    ## Ports ##
+    listeners:
+      - port: 8008
+        tls: false
+        bind_addresses: ['::']
+        type: http
+        x_forwarded: true
+        resources:
+          - names: [client,federation]
+            compress: false
+      - port: 9090
+        tls: false
+        bind_addresses: ['::']
+        type: http
+        resources:
+          - names: [metrics]
+            compress: false
+      - port: 9093
+        tls: false
+        bind_addresses: ['::']
+        type: http
+        resources:
+          - names: [replication]
+            compress: false
+    {{- if .Values.config.extraListeners }}
+      {{ .Values.config.extraListeners | toYaml | nindent 6 }}
+    {{- end }}
+    event_cache_size: {{ .Values.config.eventCacheSize | default "10K" }}
+    log_config: "/synapse/config/log.yaml"
+    ## Ratelimiting ##
+    rc_message:
+      per_second: {{ .Values.config.ratelimiting.rcMessage.perSecond | default 0.1 }}
+      burst_count: {{ .Values.config.ratelimiting.rcMessage.burstCount | default 10.0 }}
+    rc_login:
+      account:
+        per_second: {{ .Values.config.ratelimiting.rcLogin.account.perSecond | default 1 }}
+        burst_count: {{ .Values.config.ratelimiting.rcLogin.account.burstCount | default 10 }}
+      address:
+        per_second:  {{ .Values.config.ratelimiting.rcLogin.address.perSecond | default 10 }}
+        burst_count: {{ .Values.config.ratelimiting.rcLogin.address.burstCount | default 100 }}
+    rc_federation:
+      window_size: {{ .Values.config.ratelimiting.rcFederation.windowSize | default 1000 }}
+      sleep_limit: {{ .Values.config.ratelimiting.rcFederation.sleepLimit | default 10 }}
+      sleep_delay: {{ .Values.config.ratelimiting.rcFederation.sleepDelay | default 500 }}
+      reject_limit: {{ .Values.config.ratelimiting.rcFederation.rejectLimit | default 50 }}
+      concurrent: {{ .Values.config.ratelimiting.rcFederation.concurrent | default 3 }}
+    media_store_path: "/synapse/data/media"
+    max_upload_size: {{ .Values.config.maxUploadSize | default "23M" }}
+    max_image_pixels: {{ .Values.config.maxImagePixels | default "32M" }}
+    dynamic_thumbnails: {{ .Values.config.dynamicThumbnails | default false }}
+    thumbnail_sizes:
+      - width: 32
+        height: 32
+        method: crop
+      - width: 96
+        height: 96
+        method: crop
+      - width: 320
+        height: 240
+        method: scale
+      - width: 640
+        height: 480
+        method: scale
+      - width: 800
+        height: 600
+        method: scale
+    {{- if .Values.config.extraThumbnailSizes }}
+      {{ .Values.config.extraThumbnailSizes | toYaml | nindent 6 }}
+    {{- end }}
+    url_preview_enabled: {{ .Values.config.urlPreview.Enabled | default false }}
+    url_preview_ip_range_blacklist:
+      - 127.0.0.0/8
+      - 10.0.0.0/8
+      - 172.16.0.0/12
+      - 192.168.0.0/16
+      - 100.64.0.0/10
+      - 169.254.0.0/16
+      - ::1/128
+      - fe80::/64
+      - fc00::/7
+    {{- if .Values.config.urlPreview.extraIpRangeBlacklist }}
+      {{ .Values.config.urlPreview.extraIpRangeBlacklist | toYaml | nindent 6 }}
+    {{- end }}
+    url_preview_url_blacklist:
+    {{- if .Values.config.urlPreview.urlBlacklist }}
+      {{ .Values.config.urlPreview.urlBlacklist | toYaml | nindent 6 }}
+    {{- end }}
+    max_spider_size: {{ .Values.config.urlPreview.maxSpiderSize | default "10M" }}
+    enable_registration: {{ .Values.config.enableRegistration | default false }}
+    bcrypt_rounds: {{ .Values.config.bcryptRounds | default 12 }}
+    allow_guest_access: {{ .Values.config.allowGuestAccess | default false }}
+    autocreate_auto_join_rooms: {{ .Values.config.autocreateAutoJoinRooms | default true }}
+    enable_metrics: {{ .Values.config.enableMetrics | default true }}
+    report_stats: {{ .Values.config.reportStats.enabled | default false }}
+    {{- if eq .Values.config.reportStats.enabled true }}
+    report_stats_endpoint: {{ .Values.config.reportStats.endpoint }}
+    {{- end }}
+    room_prejoin_state:
+        disable_default_event_types: {{ .Values.config.roomPrejoinState.disableDefaultEventTypes | default false }}
+        additional_event_types:
+        {{- if .Values.config.roomPrejoinState.additionalEventTypes }}
+          {{ .Values.config.roomPrejoinState.additionalEventTypes | toYaml | nindent 10 }}
+        {{- end }}
+    track_appservice_user_ips: {{ .Values.config.trackAppserviceUserIps | default false }}
+    signing_key_path: "/synapse/keys/signing.key"
+    key_refresh_interval: {{ .Values.config.keyRefreshInterval | default "1d" }}
+    trusted_key_servers: {{- .Values.config.trustedKeyServers | toYaml | nindent 6 }}
+    password_config:
+       enabled: {{ .Values.config.passwordConfig.enabled | default true }}
+    ## Push ##
+    push:
+      include_content: {{ .Values.config.push.includeContent | default false }}
+    ## Rooms ##
+    enable_group_creation: {{ .Values.config.enableGroupCreation | default true }}
+    alias_creation_rules:
+    {{- if .Values.config.aliasCreationRules }}
+      {{ .Values.config.aliasCreationRules | toYaml | nindent 6 }}
+    {{- end }}
+    ## Workers ##
+    {{- $default := .Values.workers.default }}
+    {{- range $worker, $config := .Values.workers }}
+      {{- if $config.enabled }}
+        {{- if eq $worker "pusher" }}
+    # For pusher worker
+    start_pushers: false
+        {{- else if eq $worker "appservice" }}
+    # For appservice worker
+    notify_appservices: false
+        {{- else if eq $worker "federation_sender" }}
+    # For federation_sender worker
+    send_federation: false
+        {{- else if eq $worker "media_repository" }}
+    # For media_repository worker
+    enable_media_repo: false
+        {{- else if eq $worker "user_dir" }}
+    # For user_dir worker
+    update_user_directory: false
+        {{- end }}
+      {{- end }}
+    {{- end }}
+    {{- with .Values.extraConfig }}
+    ## Extra config ##
+    {{ . | toYaml | nindent 4 }}
+    {{- end }}

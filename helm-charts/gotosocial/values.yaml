@@ -39,6 +39,8 @@ resources:
     memory: 512Mi
 
 gotosocial:
+  strategy:
+    type: Recreate
   persistence:
     enabled: false
     accessMode: "ReadWriteOnce"

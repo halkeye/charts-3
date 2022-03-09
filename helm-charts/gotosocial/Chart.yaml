@@ -6,7 +6,7 @@ home: https://github.com/0hlov3/helm-charts/charts/gotosocial
 
 type: application
 # Chart Version
-version: "0.0.3"
+version: "0.0.4"
 # gotosocial version
 appVersion: "0.2.1"
 

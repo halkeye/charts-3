@@ -8,6 +8,8 @@ metadata:
     {{- include "gotosocial.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
+  strategy:
+    {{- toYaml .Values.gotosocial.Recreate | nindent 4 }}
   selector:
     matchLabels:
       {{- include "gotosocial.selectorLabels" . | nindent 6 }}

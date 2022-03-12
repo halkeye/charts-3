@@ -56,13 +56,6 @@ Create chart name and version as used by the chart label.
 {{- end -}}
 
 {{/*
-Get the correct image tag name
-*/}}
-{{- define "matrix-synapse.imageTag" -}}
-{{- .Values.image.tag | default (printf "v%s" .Chart.AppVersion) -}}
-{{- end -}}
-
-{{/*
 Common labels
 */}}
 {{- define "matrix-synapse.labels" -}}
@@ -267,7 +260,7 @@ Create the name of the service account to use
 */}}
 {{- define "matrix-synapse.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "matrix-synapse.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "pinamatrix-synapsefore.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}

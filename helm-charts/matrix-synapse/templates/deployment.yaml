@@ -108,7 +108,7 @@ spec:
           {{- with .Values.synapse.extraEnv }}
             {{- . | toYaml | nindent 12 }}
           {{- end }}
-          image: "{{ .Values.image.repository }}:{{ include "matrix-synapse.imageTag" . }}"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           securityContext:
             {{- toYaml .Values.synapse.securityContext | nindent 12 }}

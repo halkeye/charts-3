@@ -1,0 +1,19 @@
+---
+defaultServer:
+  url: 'https://matrix.fedi.tech'
+  name: 'matrix.fedi.tech'
+
+## Ingress configuration.
+##
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    kubernetes.io/tls-acme: "true"
+  hosts:
+    - element.fedi.tech
+  tls:
+    - secretName: tls-element-general
+      hosts:
+        - element.fedi.tech

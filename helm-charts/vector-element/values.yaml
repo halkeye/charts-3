@@ -95,13 +95,13 @@ ingress:
 
 ## Resource configuration for the application.
 ##
-resources: {}
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+resources:
+  limits:
+    cpu: 200m
+    memory: 256Mi
+  requests:
+    cpu: 200m
+    memory: 256Mi
 
 ## Configure auto-scaling for the application.
 ##

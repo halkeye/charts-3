@@ -7,7 +7,7 @@ description: |
   Talk to everyone through the open global Matrix network, protected by proper
   end-to-end encryption.
 icon: https://element.io/images/element-logo.svg
-home: https://github.com/0hlov3/helm-charts/charts/synapse-matrix
+home: https://github.com/0hlov3/helm-charts/helm-charts/vector-element
 #ChartVersion
 version: 0.1.0
 # MatrixVersion

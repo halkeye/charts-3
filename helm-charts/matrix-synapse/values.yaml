@@ -730,19 +730,15 @@ wellknown:
 ##
 postgresql:
   enabled: true
-
-  # XXX Change me!
-  postgresqlPassword: synapse
-
-  ## Or use existing secret with "postgresql-password" key
-  ## instead of static password
-  ##
-  # existingSecret: postgresql-secret
-
-  postgresqlUsername: synapse
-  postgresqlDatabase: synapse
-
-  postgresqlInitdbArgs: "--lc-collate=C --lc-ctype=C"
+  auth:
+    username: synapse
+    # XXX Change me!
+    password: synapse
+    database: synapse
+    # existingSecret:
+  primary:
+    initdb:
+      args: "--lc-collate=C --lc-ctype=C"
 
   persistence:
     # storageClass: "-"
@@ -881,7 +877,7 @@ ingress:
   ## Set the name of the IngressClass cluster resource (optional)
   ## https://kubernetes.io/docs/reference/kubernetes-api/service-resources/ingress-v1/#IngressSpec
   
-  className: nginx-external
+  className: nginx
   #controller: k8s.io/ingress-nginx
   annotations:
     nginx.ingress.kubernetes.io/configuration-snippet: |

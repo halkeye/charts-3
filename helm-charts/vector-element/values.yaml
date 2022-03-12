@@ -1,0 +1,125 @@
+---
+## Number of replicas
+replicaCount: 1
+
+## Image configuration
+##
+image:
+  repository: vectorim/element-web
+  pullPolicy: IfNotPresent
+  # tag: ""
+
+imagePullSecrets: []
+# nameOverride: ""
+# fullnameOverride: ""
+
+## Default server for the Element install. (Required)
+## This will configure the default_server_config block in the config.json
+## Ref: https://github.com/vector-im/element-web/blob/develop/config.sample.json
+##
+defaultServer:
+  url: 'https://matrix.example.com'
+  name: 'matrix.example.com'
+  # identity_url: 'https://vector.im'
+
+## Element configuration
+## Ref: https://github.com/vector-im/element-web/blob/develop/config.sample.json
+##
+config: {}
+
+## Configuration for mounting additional volumes into the application container.
+##
+extraVolumes: {}
+# - name: backgrounds
+#   persistentVolumeClaim:
+#     claimName: element-backgrounds
+extraVolumeMounts: {}
+# - name: backgrounds
+#   mountPath: /app/themes/element/img/backgrounds/
+
+## Configures an application-specific service account.
+##
+serviceAccount:
+  create: true
+
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+## Additional annotations to add to the pod.
+##
+podAnnotations: {}
+
+## Security context configuration to add to the pod.
+##
+podSecurityContext: {}
+  # fsGroup: 2000
+
+## Security context configuration to add to the container inside the pod.
+##
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+## Service configuration.
+##
+service:
+  type: ClusterIP
+  port: 80
+
+## Ingress configuration.
+##
+ingress:
+  enabled: false
+  className: "nginx"
+  annotations:
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      add_header X-Frame-Options SAMEORIGIN;
+      add_header X-Content-Type-Options nosniff;
+      add_header X-XSS-Protection "1; mode=block";
+      add_header Content-Security-Policy "frame-ancestors 'none'";
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    kubernetes.io/tls-acme: "true"
+  hosts:
+    - element.example.com
+  tls:
+    - secretName: tls-element-general
+      hosts:
+        - element.example.com
+
+## Resource configuration for the application.
+##
+resources:
+  limits:
+    cpu: 200m
+    memory: 256Mi
+  requests:
+    cpu: 200m
+    memory: 256Mi
+
+## Configure auto-scaling for the application.
+##
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+## Node selectors to use when deploying the application.
+##
+nodeSelector: {}
+
+## Tolerations to apply to the application.
+##
+tolerations: []
+
+## Affinities to set on the application.
+##
+affinity: {}

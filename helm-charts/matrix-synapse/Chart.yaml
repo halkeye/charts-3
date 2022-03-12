@@ -2,7 +2,7 @@ apiVersion: v2
 name: matrix-synapse
 description: Deployes the Synapse Matrix Homeserver
 icon: https://matrix.org/images/matrix-logo.svg
-home: https://github.com/0hlov3/helm-charts/helm-charts/matrix-synapse
+home: https://github.com/matrix-org/synapse
 #ChartVersion
 version: 0.1.0
 # MatrixVersion

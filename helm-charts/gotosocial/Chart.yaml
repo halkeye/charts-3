@@ -2,7 +2,7 @@ apiVersion: v2
 name: gotosocial
 description: A Helm chart for Kubernetes
 icon: https://docs.gotosocial.org/en/latest/assets/sloth.png
-home: https://github.com/0hlov3/helm-charts/charts/gotosocial
+home: https://github.com/superseriousbusiness/gotosocial
 
 type: application
 # Chart Version
@@ -11,7 +11,7 @@ version: "0.0.4"
 appVersion: "0.2.1"
 
 maintainers:
-  - name: Olaf Schönwald
+  - name: 0hlov3
     email: 0hlov3@protonmail.com
     url: https://schoenwald.me
 

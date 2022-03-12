@@ -1,0 +1,20 @@
+---
+apiVersion: v2
+name: vector-element
+description: |
+  All-in-one secure chat app for teams, friends and organisations.
+  Keeps conversations in your control, safe from data-mining and ads.
+  Talk to everyone through the open global Matrix network, protected by proper
+  end-to-end encryption.
+icon: https://element.io/images/element-logo.svg
+home: https://github.com/0hlov3/helm-charts/charts/synapse-matrix
+#ChartVersion
+version: 0.1.0
+# MatrixVersion
+appVersion: 1.9.0
+type: application
+
+maintainers:
+  - name: 0hlov3
+    email: 0hlov3@protonmail.com
+    url: https://schoenwald.me

@@ -2,16 +2,13 @@
 apiVersion: v2
 name: vector-element
 description: |
-  All-in-one secure chat app for teams, friends and organisations.
-  Keeps conversations in your control, safe from data-mining and ads.
-  Talk to everyone through the open global Matrix network, protected by proper
-  end-to-end encryption.
+  Element (formerly known as Vector and Riot) is a Matrix web client built using the Matrix React SDK.
 icon: https://element.io/images/element-logo.svg
 home: https://github.com/0hlov3/helm-charts/helm-charts/vector-element
 #ChartVersion
 version: 0.1.0
 # MatrixVersion
-appVersion: 1.9.0
+appVersion: v1.10.6
 type: application
 
 maintainers:

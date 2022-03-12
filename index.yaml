@@ -3,14 +3,14 @@ entries:
   gotosocial:
   - apiVersion: v2
     appVersion: 0.2.1
-    created: "2022-03-12T11:18:24.642928481Z"
+    created: "2022-03-12T19:10:35.373627326Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
       repository: https://charts.bitnami.com/bitnami
       version: ~11.0.06
     description: A Helm chart for Kubernetes
-    digest: d50738c1d9ea6559a3c5264992dba6a010889541a3fa86e26990297655d7a436
+    digest: 6244eafd5309b8cb9f89818ff92e7cd827bc77adb3ff9397c71c9f77b4945245
     home: https://github.com/superseriousbusiness/gotosocial
     icon: https://docs.gotosocial.org/en/latest/assets/sloth.png
     maintainers:
@@ -24,7 +24,7 @@ entries:
     version: 0.0.4
   - apiVersion: v2
     appVersion: 0.2.1
-    created: "2022-03-12T11:18:24.634958279Z"
+    created: "2022-03-12T19:10:35.366193392Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -45,7 +45,7 @@ entries:
     version: 0.0.3
   - apiVersion: v2
     appVersion: 0.2.0
-    created: "2022-03-12T11:18:24.627353136Z"
+    created: "2022-03-12T19:10:35.356876504Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -66,7 +66,7 @@ entries:
     version: 0.0.2
   - apiVersion: v2
     appVersion: 0.2.0
-    created: "2022-03-12T11:18:24.618523851Z"
+    created: "2022-03-12T19:10:35.345888106Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -88,7 +88,7 @@ entries:
   matrix-synapse:
   - apiVersion: v2
     appVersion: v1.54.0
-    created: "2022-03-12T11:18:24.659682893Z"
+    created: "2022-03-12T19:10:35.397015696Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -99,7 +99,7 @@ entries:
       repository: https://charts.bitnami.com/bitnami
       version: ~16.5.2
     description: Deployes the Synapse Matrix Homeserver
-    digest: 6089d5f181542c329b92fa14b43e2f07b61d32501b16c293adf9abd1d7f59e5c
+    digest: 32acb79b050e19658b19f8e0e5f1b9186801e066efa2112a7bf5b776147bec2d
     home: https://github.com/matrix-org/synapse
     icon: https://matrix.org/images/matrix-logo.svg
     maintainers:
@@ -114,10 +114,10 @@ entries:
   pinafore:
   - apiVersion: v2
     appVersion: v2.0.5
-    created: "2022-03-12T11:18:24.66034572Z"
+    created: "2022-03-12T19:10:35.398091617Z"
     description: Pinafore is an an alternative web client for Mastodon, focused on
       speed and simplicity.
-    digest: f2d4c07c4b3bef4e3874d0706de227d0a0b27a4f802562fde953808f4a7e7eaf
+    digest: 32b87d7ebe05dadab0a660a7d87687705dd57f401a5e5e930dadd5e183b84d2b
     home: https://github.com/nolanlawson/pinafore
     icon: https://raw.githubusercontent.com/nolanlawson/pinafore/master/src/static/sailboat-icon.svg
     maintainers:
@@ -132,10 +132,10 @@ entries:
   privatebin:
   - apiVersion: v2
     appVersion: 1.3.5
-    created: "2022-03-12T11:18:24.661902532Z"
+    created: "2022-03-12T19:10:35.400534544Z"
     description: PrivateBin is a minimalist, open source online pastebin where the
       server has zero knowledge of pasted data.
-    digest: d2f59a6d65c087433ef667425204d24578a4dbfb1aa251e99c90a00f762d8f51
+    digest: 3f38f12c99061e692c92941e20902f15b2ecc126e5ac457ee3bb703ee4eaedf7
     home: https://github.com/PrivateBin/PrivateBin
     icon: https://privatebin.info/img/logo.png
     maintainers:
@@ -149,7 +149,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: 1.3.5
-    created: "2022-03-12T11:18:24.661133013Z"
+    created: "2022-03-12T19:10:35.399230017Z"
     description: A Helm chart for Kubernetes
     digest: b34ad21cd8c0aea0984d46eea8d1c0086ee04ce2019de0ab147f433698b6b922
     home: https://github.com/0hlov3/helm-charts/charts/privatebin
@@ -166,10 +166,10 @@ entries:
   vector-element:
   - apiVersion: v2
     appVersion: v1.10.6
-    created: "2022-03-12T11:18:24.662568206Z"
+    created: "2022-03-12T19:10:35.40162009Z"
     description: 'Element (formerly known as Vector and Riot) is a Matrix web client
       built using the Matrix React SDK. '
-    digest: 981b1243436687c34edb5b89f5c908c01d73c18184add5eb40184fb837070961
+    digest: bdb0d27a4a9397ddf376ade6863afadf1e7ae7f27c9c4b51ca650dd5220042ea
     home: https://github.com/0hlov3/helm-charts/helm-charts/vector-element
     icon: https://element.io/images/element-logo.svg
     maintainers:
@@ -181,4 +181,4 @@ entries:
     urls:
     - http://schoenwald.me/helm-charts/vector-element-0.1.0.tgz
     version: 0.1.0
-generated: "2022-03-12T11:18:24.611324837Z"
+generated: "2022-03-12T19:10:35.334642278Z"

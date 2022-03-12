@@ -1,0 +1,25 @@
+apiVersion: v2
+name: matrix-synapse
+description: Deployes the Synapse Matrix Homeserver
+icon: https://matrix.org/images/matrix-logo.svg
+home: https://github.com/0hlov3/helm-charts/helm-charts/matrix-synapse
+#ChartVersion
+version: 0.1.0
+# MatrixVersion
+appVersion: v1.54.0
+type: application
+
+maintainers:
+  - name: 0hlov3
+    email: 0hlov3@protonmail.com
+    url: https://schoenwald.me
+
+dependencies:
+  - name: postgresql
+    version: ~11.0.6
+    repository: https://charts.bitnami.com/bitnami
+    condition: postgresql.enabled
+  - name: redis
+    version: ~16.5.2
+    repository: https://charts.bitnami.com/bitnami
+    condition: redis.enabled

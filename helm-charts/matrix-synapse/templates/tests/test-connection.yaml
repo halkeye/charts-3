@@ -1,9 +1,10 @@
+---
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "{{ include "synapse-matrix.fullname" . }}-test-connection"
+  name: "{{ include "matrix-synapse.fullname" . }}-test-connection"
   labels:
-    {{- include "synapse-matrix.labels" . | nindent 4 }}
+    {{- include "matrix-synapse.labels" . | nindent 4 }}
   annotations:
     "helm.sh/hook": test
 spec:
@@ -11,5 +12,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args: ['{{ include "synapse-matrix.fullname" . }}:{{ .Values.service.port }}']
+      args: ['{{ include "matrix-synapse.fullname" . }}:{{ .Values.service.port }}']
   restartPolicy: Never

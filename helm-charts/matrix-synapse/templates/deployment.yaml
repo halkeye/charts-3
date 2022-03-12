@@ -2,7 +2,7 @@
 {{- if (and .Values.postgresql.enabled (and (not .Values.postgresql.postgresqlPassword) (not .Values.postgresql.existingSecret))) -}}
 {{-  fail "You must specify a static postgres password or existing secret if using the included postgres chart" -}}
 {{- end -}}
-{{- if (and .Values.redis.enabled (and .Values.redis.usePassword (and (not .Values.redis.password) (not .Values.redis.existingSecret)))) -}}
+{{- if (and .Values.redis.enabled (and .Values.redis.usePassword (and (not .Values.redis.auth.password) (not .Values.redis.existingSecret)))) -}}
 {{-  fail "You must specify a static redis password or existing secret if using the included redis chart" -}}
 {{- end -}}
 ---
@@ -38,9 +38,6 @@ spec:
         {{- end }}
     spec:
       {{- include "matrix-synapse.imagePullSecrets" . | nindent 6 }}
-      imagePullSecrets:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
       securityContext:
         {{- toYaml .Values.synapse.podSecurityContext | nindent 8 }}
     {{- if $needsVolumePermissions }}
@@ -84,19 +81,29 @@ spec:
                           -c /synapse/config/homeserver.yaml \
                           -c /synapse/config/conf.d/
           env:
-          {{- if .Values.postgresql.enabled }}
+          {{- if or .Values.postgresql.enabled .Values.externalPostgresql.existingSecret }}
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
+                  {{- if .Values.postgresql.enabled }}
                   name: {{ .Values.postgresql.existingSecret | default (include "matrix-synapse.postgresql.fullname" .) }}
                   key: postgresql-password
+                  {{- else }}
+                  name: {{ .Values.externalPostgresql.existingSecret }}
+                  key: {{ .Values.externalPostgresql.existingSecretPasswordKey }}
+                  {{- end }}
           {{- end }}
-          {{- if and .Values.redis.enabled (default .Values.redis.usePassword true) }}
+          {{- if or (and .Values.redis.enabled (default .Values.redis.usePassword true)) .Values.externalRedis.existingSecret }}
             - name: REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
+                  {{- if .Values.redis.enabled }}
                   name: {{ .Values.redis.existingSecret | default (include "matrix-synapse.redis.fullname" .) }}
                   key: redis-password
+                  {{- else }}
+                  name: {{ .Values.externalRedis.existingSecret }}
+                  key: {{ .Values.externalRedis.existingSecretPasswordKey }}
+                  {{- end -}}
           {{- end }}
           {{- with .Values.synapse.extraEnv }}
             {{- . | toYaml | nindent 12 }}
@@ -136,8 +143,6 @@ spec:
               mountPath: /synapse/keys
             - name: media
               mountPath: /synapse/data
-            - name: passport-private-key
-              mountPath: /synapse/secrets/passport-private.key
           {{- with .Values.synapse.extraVolumeMounts }}
             {{- . | toYaml | nindent 12 }}
           {{- end }}
@@ -160,12 +165,6 @@ spec:
             items:
               - key: {{ .Values.signingkey.existingSecretKey | default "signing.key" | quote }}
                 path: signing.key
-        - name: passport-private-key
-          secret:
-            secretName: passport-private-key
-            items:
-              - key: matrix-gematik-key.pem
-                path: passport-private.key
         - name: tmpconf
           emptyDir: {}
         - name: media

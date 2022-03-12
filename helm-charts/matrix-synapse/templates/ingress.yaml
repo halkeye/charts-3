@@ -1,7 +1,7 @@
 {{- if .Values.ingress.enabled -}}
 {{- $fullName := include "matrix-synapse.fullname" . -}}
 {{- $wkName := include "matrix-synapse.externalname" (dict "global" . "external" "wellknown-lighttpd") -}}
-{{- $v1Ingress := .Capabilities.APIVersions.Has "networking.k8s.io/v1/Ingress" -}}
+{{- $v1Ingress := .Capabilities.APIVersions.Has "networking.k8s.io/v1" -}}
 {{- if $v1Ingress -}}
 apiVersion: networking.k8s.io/v1
 {{- else -}}
@@ -19,9 +19,6 @@ metadata:
 spec:
 {{- if .Values.ingress.className }}
   ingressClassName: {{ .Values.ingress.className }}
-{{- end }}
-{{- if .Values.ingress.controller }}
-  controller: {{ .Values.ingress.controller }}
 {{- end }}
 {{- if .Values.ingress.tls }}
   tls:
@@ -134,13 +131,7 @@ spec:
           {{ . | toYaml | nindent 10 }}
         {{- end }}
         {{- end }}
-          - path: /
-            backend:
-              service:
-                name: {{ $fullName }}
-                port:
-                  number: 8008
-            pathType: Prefix
+
         {{- if or (has . $csHosts) (has . $s2sHosts) }}
           - path: /_matrix
             backend:
@@ -148,11 +139,11 @@ spec:
               service:
                 name: {{ $fullName }}
                 port:
-                  number: 8008
+                  number: {{ $.Values.service.port }}
             pathType: Prefix
           {{- else }}
               serviceName: {{ $fullName }}
-              servicePort: 8008
+              servicePort: {{ $.Values.service.port }}
           {{- end }}
         {{- end }}
 
@@ -163,11 +154,11 @@ spec:
               service:
                 name: {{ $fullName }}
                 port:
-                  number: 8008
+                  number: {{ $.Values.service.port }}
             pathType: Prefix
           {{- else }}
               serviceName: {{ $fullName }}
-              servicePort: 8008
+              servicePort: {{ $.Values.service.port }}
           {{- end }}
         {{- end }}
 
@@ -204,11 +195,11 @@ spec:
               service:
                 name: {{ $fullName }}
                 port:
-                  number: 8008
+                  number: {{ $.Values.service.port }}
             pathType: Exact
             {{- else }}
               serviceName: {{ $fullName }}
-              servicePort: 8008
+              servicePort: {{ $.Values.service.port }}
             {{- end }}
           {{- end }}
         {{- end }}

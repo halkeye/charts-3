@@ -5,7 +5,7 @@ image:
   repository: matrixdotorg/synapse
   ## Tag to override with, will default to the application version.
   ##
-  tag: development-latest
+  # tag: ""
   pullPolicy: Always
   ## Optionally specify an array of imagePullSecrets.
   ## Secrets must be manually created in the namespace.
@@ -22,11 +22,27 @@ image:
 ##
 # fullnameOverride: ""
 
+
+## The Matrix domain name, this is what will be used for the domain part in
+## your MXIDs.
+##
+# serverName: 'example.com'
+
+## The public Matrix server name, this will be used for any public URLs
+## in config as well as for client API links in the ingress.
+# publicServerName: 'matrix.example.com'
+
 ## The source of the signing key used by Synapse in federation.
 ##
 signingkey:
   ## Enable a Kubernetes job to generate and store a signing key if one does not
   ## exist.
+  ## If you have already run a Matrix server at some point on your domain then
+  ## you will want to keep the old signing key, either by using the `existingSecret`
+  ## configuration, or by including the old key under `extraConfig.old_signing_keys`
+  ##
+  ## If you lose your signing key then any federation traffic from your instance
+  ## might not be trusted any more by the wider network.
   ##
   job:
     enabled: false
@@ -48,21 +64,13 @@ signingkey:
 
   ## Resources to apply to the signing key generation job
   ##
-  #resources:
+  resources: {}
   #  limits:
   #    cpu: 500m
-  #    memory: 1024Mi
+  #    memory: 2048Mi
   #  requests:
   #    cpu: 1000m
   #    memory: 2048Mi
-## The Matrix domain name, this is what will be used for the domain part in
-## your MXIDs.
-##
-serverName: 'matrix.example.com'
-
-## The public Matrix server name, this will be used for any public URLs
-## in config as well as for client API links in the ingress.
-publicServerName: 'matrix.example.com'
 
 ## Matrix configuration values that affect other parts of the chart, for any
 ## value not handled by this block, you will want to instead set it in
@@ -185,15 +193,13 @@ config:
   ##
   reportStats:
     enabled: false
-    endpoint: https://synapse-stats.gematik.de/push
+    endpoint: https://example.com/push
 
   # Controls for the state that is shared with users who receive an invite to a room
   roomPrejoinState:
     disableDefaultEventTypes: false
     additionalEventTypes:
       - m.room.type
-      - de.gematik.ti-messenger.passport
-
   # Uncomment to enable tracking of application service IP addresses. Implicitly
   # enables MAU tracking for application service users.
   # trackAppserviceUserIps: true
@@ -256,6 +262,8 @@ config:
 ## Ref: https://github.com/matrix-org/synapse/blob/develop/docs/sample_config.yaml
 ##
 extraConfig: {}
+#  old_signing_keys:
+#    "ed25519:id": { key: "base64string", expired_ts: 123456789123 } 
 #  use_presence: false
 #  enable_search: false
 #  federation_domain_whitelist:
@@ -350,34 +358,27 @@ synapse:
 
   ## Resources to apply to the main Synapse pod.
   ##
-  #resources: {}
-  #  limits:
-  #    cpu: 1000m
-  #    memory: 2500Mi
-  #  requests:
-  #    cpu: 1000m
-  #    memory: 2500Mi
   resources:
     limits:
-      memory: 4096Mi
-      cpu: 2000m
+      memory: 2048Mi
+      cpu: 1000m
     requests:
-      memory: 4096Mi
-      cpu: 2000m
+      memory: 2048Mi
+      cpu: 1000m
 
   ## Liveness probe configuration to use
   ##
-  ##livenessProbe:
-  ##  httpGet:
-  ##    path: /health
-  ##    port: http
+  livenessProbe:
+    httpGet:
+      path: /health
+      port: http
 
   ## Readiness probe configuration to use
   ##
-  ##readinessProbe:
-  ##  httpGet:
-  ##    path: /health
-  ##    port: http
+  readinessProbe:
+    httpGet:
+      path: /health
+      port: http
 
   ## Node selectors to set for the main Synapse pod.
   ##
@@ -512,31 +513,34 @@ workers:
     generic: true
     listeners: [client, federation]
     csPaths:
-    # - "/_matrix/client/(v2_alpha|r0)/sync"
-      - "/_matrix/client/(api/v1|v2_alpha|r0)/events"
-    # - "/_matrix/client/(api/v1|r0)/initialSync"
-    # - "/_matrix/client/(api/v1|r0)/rooms/[^/]+/initialSync"
-      - "/_matrix/client/(api/v1|r0|unstable)/publicRooms"
-      - "/_matrix/client/(api/v1|r0|unstable)/rooms/.*/joined_members"
-      - "/_matrix/client/(api/v1|r0|unstable)/rooms/.*/context/.*"
-      - "/_matrix/client/(api/v1|r0|unstable)/rooms/.*/members"
-      - "/_matrix/client/(api/v1|r0|unstable)/rooms/.*/state"
-      - "/_matrix/client/(api/v1|r0|unstable)/account/3pid"
-      - "/_matrix/client/(api/v1|r0|unstable)/keys/query"
-      - "/_matrix/client/(api/v1|r0|unstable)/keys/changes"
+    # - "/_matrix/client/(v2_alpha|r0|v3)/sync"
+      - "/_matrix/client/(api/v1|v2_alpha|r0|v3)/events"
+    # - "/_matrix/client/(api/v1|r0|v3)/initialSync"
+    # - "/_matrix/client/(api/v1|r0|v3)/rooms/[^/]+/initialSync"
+      - "/_matrix/client/(api/v1|r0|v3|unstable)/publicRooms"
+      - "/_matrix/client/(api/v1|r0|v3|unstable)/rooms/.*/joined_members"
+      - "/_matrix/client/(api/v1|r0|v3|unstable)/rooms/.*/context/.*"
+      - "/_matrix/client/(api/v1|r0|v3|unstable)/rooms/.*/members"
+      - "/_matrix/client/(api/v1|r0|v3|unstable)/rooms/.*/state"
+      - "/_matrix/client/unstable/org.matrix.msc2946/rooms/.*/spaces"
+      - "/_matrix/client/unstable/org.matrix.msc2946/rooms/.*/hierarchy"
+      - "/_matrix/client/unstable/im.nheko.summary/rooms/.*/summary"
+      - "/_matrix/client/(api/v1|r0|v3|unstable)/account/3pid"
+      - "/_matrix/client/(api/v1|r0|v3|unstable)/keys/query"
+      - "/_matrix/client/(api/v1|r0|v3|unstable)/keys/changes"
       - "/_matrix/client/versions"
-      - "/_matrix/client/(api/v1|r0|unstable)/voip/turnServer"
-      - "/_matrix/client/(api/v1|r0|unstable)/joined_groups"
-      - "/_matrix/client/(api/v1|r0|unstable)/publicised_groups"
-      - "/_matrix/client/(api/v1|r0|unstable)/publicised_groups/"
-      - "/_matrix/client/(api/v1|r0|unstable)/login"
-      - "/_matrix/client/(r0|unstable)/register"
-      - "/_matrix/client/(r0|unstable)/auth/.*/fallback/web"
-      - "/_matrix/client/(api/v1|r0|unstable)/rooms/.*/send"
-      - "/_matrix/client/(api/v1|r0|unstable)/rooms/.*/state/"
-      - "/_matrix/client/(api/v1|r0|unstable)/rooms/.*/(join|invite|leave|ban|unban|kick)"
-      - "/_matrix/client/(api/v1|r0|unstable)/join/"
-      - "/_matrix/client/(api/v1|r0|unstable)/profile/"
+      - "/_matrix/client/(api/v1|r0|v3|unstable)/voip/turnServer"
+      - "/_matrix/client/(api/v1|r0|v3|unstable)/joined_groups"
+      - "/_matrix/client/(api/v1|r0|v3|unstable)/publicised_groups"
+      - "/_matrix/client/(api/v1|r0|v3|unstable)/publicised_groups/"
+      - "/_matrix/client/(api/v1|r0|v3|unstable)/login"
+      - "/_matrix/client/(r0|v3|unstable)/register"
+      - "/_matrix/client/(r0|v3|unstable)/auth/.*/fallback/web"
+      - "/_matrix/client/(api/v1|r0|v3|unstable)/rooms/.*/send"
+      - "/_matrix/client/(api/v1|r0|v3|unstable)/rooms/.*/state/"
+      - "/_matrix/client/(api/v1|r0|v3|unstable)/rooms/.*/(join|invite|leave|ban|unban|kick)"
+      - "/_matrix/client/(api/v1|r0|v3|unstable)/join/"
+      - "/_matrix/client/(api/v1|r0|v3|unstable)/profile/"
     paths:
       - "/_matrix/federation/v1/event/"
       - "/_matrix/federation/v1/state/"
@@ -581,10 +585,10 @@ workers:
   #  generic: true
   #  listeners: [client]
   #  csPaths:
-  #    - "/_matrix/client/(v2_alpha|r0)/sync"
-  #    - "/_matrix/client/(api/v1|v2_alpha|r0)/events"
-  #    - "/_matrix/client/(api/v1|r0)/initialSync"
-  #    - "/_matrix/client/(api/v1|r0)/rooms/[^/]+/initialSync"
+  #    - "/_matrix/client/(v2_alpha|r0|v3)/sync"
+  #    - "/_matrix/client/(api/v1|v2_alpha|r0|v3)/events"
+  #    - "/_matrix/client/(api/v1|r0|v3)/initialSync"
+  #    - "/_matrix/client/(api/v1|r0|v3)/rooms/[^/]+/initialSync"
 
   ## This worker deals with pushing notifications.
   ## NB; Only one instance of this worker can be run at a time, refer to the
@@ -627,7 +631,7 @@ workers:
     enabled: false
     listeners: [client]
     csPaths:
-      - "/_matrix/client/(api/v1|r0|unstable)/user_directory/search"
+      - "/_matrix/client/(api/v1|r0|v3|unstable)/user_directory/search"
 
   ## This worker handles key uploads, and may also stub out presence if that is
   ## disabled. If you set extraConfig.use_presence=false then you may want to
@@ -637,8 +641,8 @@ workers:
     enabled: false
     listeners: [client]
     csPaths:
-      - "/_matrix/client/(api/v1|r0|unstable)/keys/upload"
-    # - "/_matrix/client/(api/v1|r0|unstable)/presence/[^/]+/status"
+      - "/_matrix/client/(api/v1|r0|v3|unstable)/keys/upload"
+    # - "/_matrix/client/(api/v1|r0|v3|unstable)/presence/[^/]+/status"
 
 ## This will set up a Lighttpd server to respond to any
 ## /.well-known/matrix/server requests, to make federation possible without
@@ -728,7 +732,7 @@ postgresql:
   enabled: true
 
   # XXX Change me!
-  #recpostgresqlPassword: synapse
+  postgresqlPassword: synapse
 
   ## Or use existing secret with "postgresql-password" key
   ## instead of static password
@@ -757,6 +761,13 @@ externalPostgresql:
   port: 5432
   username: synapse
   # password: synapse
+
+  ## The name of an existing secret with postgresql credentials
+  #existingSecret: postgres-secrets
+
+  ## Password key to be retrieved from existing secret
+  #existingSecretPasswordKey: postgres-password
+
   database: synapse
   # sslmode: prefer
 
@@ -772,17 +783,16 @@ externalPostgresql:
 redis:
   enabled: true
 
-  usePassword: true
-  # XXX Change me!
-  password: synapse
+  auth:
+    # XXX Change me!
+    password: synapse
 
   ## Or use existing secret with "redis-password" key
   ## instead of static password
   ##
   # existingSecret: redis-secret
 
-  cluster:
-    enabled: false
+  architecture: standalone
   master:
     persistence:
       ## Note that Synapse only uses redis as a synchronization utility, so no
@@ -798,6 +808,12 @@ externalRedis:
   # host: redis
   port: 6379
   # password: synapse
+
+  ## The name of an existing secret with redis credentials
+  #existingSecret: redis-secrets
+
+  ## Password key to be retrieved from existing secret
+  #existingSecretPasswordKey: redis-password
 
 ## Persistence configuration for the media repository function.
 ## This PVC will be mounted in either Synapse or a media_repo worker.
@@ -859,8 +875,12 @@ ingress:
   ## Generate traefik-compatible regex paths instead of nginx-compatible ones.
   ##
   traefikPaths: false
+
   ## Annotations to apply to the created ingress resource.
   ##
+  ## Set the name of the IngressClass cluster resource (optional)
+  ## https://kubernetes.io/docs/reference/kubernetes-api/service-resources/ingress-v1/#IngressSpec
+  
   className: nginx-external
   #controller: k8s.io/ingress-nginx
   annotations:
@@ -944,11 +964,8 @@ ingress:
 
   ## TLS configuration to include in the ingress configuration
   ##
-  tls: 
-    - secretName: tls-matrix-general
-      hosts: 
-        - matrix.example.com
-
-  ## Set the name of the IngressClass cluster resource (optional)
-  ## https://kubernetes.io/docs/reference/kubernetes-api/service-resources/ingress-v1/#IngressSpec
-  #className: can-be-anything
+  tls: []
+    #- secretName: tls-matrix-general
+    #  hosts: 
+    #    - example.com
+    #    - matrix.example.com

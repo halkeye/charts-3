@@ -1,4 +1,5 @@
 {{- $fullName := include "gotosocial.fullname" . -}}
+{{- $postgresHost := include "gotosocial.postgresql.host" . }}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -55,7 +56,7 @@ spec:
             - name: GTS_DB_TYPE
               value: postgres
             - name: GTS_DB_ADDRESS
-              value: "{{ $fullName }}-postgresql"
+              value: "{{ $postgresHost }}"
             - name: GTS_DB_PORT
               value: "5432"
             - name: GTS_DB_USER

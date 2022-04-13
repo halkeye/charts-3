@@ -74,7 +74,5 @@ Set postgres host
 {{- define "gotosocial.postgresql.host" -}}
 {{- if .Values.postgresql.enabled -}}
 {{- template "gotosocial.postgresql.fullname" . -}}
-{{- else -}}
-{{ required "A valid externalPostgresql.host is required" .Values.externalPostgresql.host }}
 {{- end -}}
 {{- end -}}

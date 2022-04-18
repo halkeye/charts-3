@@ -3,7 +3,28 @@ entries:
   gotosocial:
   - apiVersion: v2
     appVersion: 0.3.0
-    created: "2022-04-18T07:46:22.36103465Z"
+    created: "2022-04-18T07:58:59.09262116Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: ~11.0.06
+    description: A Helm chart for Kubernetes
+    digest: 8b74b4df44129ef7916b462b8f89d1d51311ed1924030e7ae8fe75d600a12e13
+    home: https://github.com/superseriousbusiness/gotosocial
+    icon: https://docs.gotosocial.org/en/latest/assets/sloth.png
+    maintainers:
+    - email: 0hlov3@protonmail.com
+      name: 0hlov3
+      url: https://schoenwald.me
+    name: gotosocial
+    type: application
+    urls:
+    - http://schoenwald.me/helm-charts/gotosocial-0.0.9.tgz
+    version: 0.0.9
+  - apiVersion: v2
+    appVersion: 0.3.0
+    created: "2022-04-18T07:58:59.083274029Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -24,7 +45,7 @@ entries:
     version: 0.0.8
   - apiVersion: v2
     appVersion: 0.2.3
-    created: "2022-04-18T07:46:22.355437655Z"
+    created: "2022-04-18T07:58:59.077291548Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -45,7 +66,7 @@ entries:
     version: 0.0.7
   - apiVersion: v2
     appVersion: 0.2.3
-    created: "2022-04-18T07:46:22.348245651Z"
+    created: "2022-04-18T07:58:59.067987773Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -66,7 +87,7 @@ entries:
     version: 0.0.6
   - apiVersion: v2
     appVersion: 0.2.2
-    created: "2022-04-18T07:46:22.341021774Z"
+    created: "2022-04-18T07:58:59.058446039Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -87,7 +108,7 @@ entries:
     version: 0.0.5
   - apiVersion: v2
     appVersion: 0.2.1
-    created: "2022-04-18T07:46:22.332195874Z"
+    created: "2022-04-18T07:58:59.048442786Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -108,7 +129,7 @@ entries:
     version: 0.0.4
   - apiVersion: v2
     appVersion: 0.2.1
-    created: "2022-04-18T07:46:22.326082885Z"
+    created: "2022-04-18T07:58:59.042731524Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -129,7 +150,7 @@ entries:
     version: 0.0.3
   - apiVersion: v2
     appVersion: 0.2.0
-    created: "2022-04-18T07:46:22.315374327Z"
+    created: "2022-04-18T07:58:59.035508037Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -150,7 +171,7 @@ entries:
     version: 0.0.2
   - apiVersion: v2
     appVersion: 0.2.0
-    created: "2022-04-18T07:46:22.308889605Z"
+    created: "2022-04-18T07:58:59.027741803Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -172,7 +193,7 @@ entries:
   matrix-synapse:
   - apiVersion: v2
     appVersion: v1.54.0
-    created: "2022-04-18T07:46:22.375650571Z"
+    created: "2022-04-18T07:58:59.115487828Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -183,7 +204,7 @@ entries:
       repository: https://charts.bitnami.com/bitnami
       version: ~16.5.2
     description: Deployes the Synapse Matrix Homeserver
-    digest: 7117d717ef0a27c6021d162e03a55b3385d4a64aad1e815504b8c2756c5893c4
+    digest: ee26c9c638cee6e519f070a9e98ed7af0fa0f50bfbfc41a569a915c18f593b78
     home: https://github.com/matrix-org/synapse
     icon: https://matrix.org/images/matrix-logo.svg
     maintainers:
@@ -198,10 +219,10 @@ entries:
   pinafore:
   - apiVersion: v2
     appVersion: v2.0.6
-    created: "2022-04-18T07:46:22.376834267Z"
+    created: "2022-04-18T07:58:59.117388519Z"
     description: Pinafore is an an alternative web client for Mastodon, focused on
       speed and simplicity.
-    digest: 5d57323bd45d06013ad73a26559b5d465ac48002c4365aebb405f69fa911d9e1
+    digest: 519ef8fecc13a065220632486b4f2d50c5aa3ad57710a217008691d11be86a2b
     home: https://github.com/nolanlawson/pinafore
     icon: https://raw.githubusercontent.com/nolanlawson/pinafore/master/src/static/sailboat-icon.svg
     maintainers:
@@ -215,7 +236,7 @@ entries:
     version: 0.0.2
   - apiVersion: v2
     appVersion: v2.0.5
-    created: "2022-04-18T07:46:22.376260425Z"
+    created: "2022-04-18T07:58:59.116462081Z"
     description: Pinafore is an an alternative web client for Mastodon, focused on
       speed and simplicity.
     digest: 6c6d6d28b57a129f9c1db49123b35215cce0c9aac4641cc85ac64c2c0d31160f
@@ -233,10 +254,10 @@ entries:
   privatebin:
   - apiVersion: v2
     appVersion: 1.3.5
-    created: "2022-04-18T07:46:22.378262249Z"
+    created: "2022-04-18T07:58:59.119799425Z"
     description: PrivateBin is a minimalist, open source online pastebin where the
       server has zero knowledge of pasted data.
-    digest: 4ca98df0a980766b433f001ff0d9ac161f9680462a5a48c294078577c545cd63
+    digest: 9b979d7cae7ea5c332a1c63b1872669167bc6c72f0048e17f5deccfc2aadfcb8
     home: https://github.com/PrivateBin/PrivateBin
     icon: https://privatebin.info/img/logo.png
     maintainers:
@@ -250,7 +271,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: 1.3.5
-    created: "2022-04-18T07:46:22.377526592Z"
+    created: "2022-04-18T07:58:59.118570205Z"
     description: A Helm chart for Kubernetes
     digest: b34ad21cd8c0aea0984d46eea8d1c0086ee04ce2019de0ab147f433698b6b922
     home: https://github.com/0hlov3/helm-charts/charts/privatebin
@@ -267,10 +288,10 @@ entries:
   vector-element:
   - apiVersion: v2
     appVersion: v1.10.6
-    created: "2022-04-18T07:46:22.380323465Z"
+    created: "2022-04-18T07:58:59.12082159Z"
     description: 'Element (formerly known as Vector and Riot) is a Matrix web client
       built using the Matrix React SDK. '
-    digest: d5c5ea0ae54843161809c6e4ebfb1e941faad5d6ecefe34a4d2dbcd26f3104b0
+    digest: 5d9a8b56ad53a7156766d5a07c960fcce1e40651c646d37e3e86677952ac069c
     home: https://github.com/0hlov3/helm-charts/helm-charts/vector-element
     icon: https://element.io/images/element-logo.svg
     maintainers:
@@ -282,4 +303,4 @@ entries:
     urls:
     - http://schoenwald.me/helm-charts/vector-element-0.1.0.tgz
     version: 0.1.0
-generated: "2022-04-18T07:46:22.301046355Z"
+generated: "2022-04-18T07:58:59.020656243Z"

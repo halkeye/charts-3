@@ -10,7 +10,7 @@ metadata:
 spec:
   replicas: {{ .Values.replicaCount }}
   strategy:
-    {{- toYaml .Values.gotosocial.strategy.type | nindent 4 }}
+    {{- toYaml .Values.gotosocial.strategy | nindent 4 }}
   selector:
     matchLabels:
       {{- include "gotosocial.selectorLabels" . | nindent 6 }}

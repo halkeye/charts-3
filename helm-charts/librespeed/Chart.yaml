@@ -1,0 +1,17 @@
+apiVersion: v2
+name: librespeed
+description: Deployes the librespeed Container in Kubernetes
+icon: https://github.com/librespeed/speedtest/raw/master/.logo/logo3.png?raw=true
+home: https://github.com/librespeed/speedtest
+
+#ChartVersion
+version: 0.0.1
+
+#LibreSpeed Version
+appVersion: "5.2.5"
+type: application
+
+maintainers:
+  - name: 0hlov3
+    email: 0hlov3@protonmail.com
+    url: https://schoenwald.me

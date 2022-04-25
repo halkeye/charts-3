@@ -6,9 +6,9 @@ description: |
 icon: https://element.io/images/element-logo.svg
 home: https://github.com/0hlov3/helm-charts/helm-charts/vector-element
 #ChartVersion
-version: 0.1.0
+version: 0.1.1
 # MatrixVersion
-appVersion: v1.10.6
+appVersion: v1.10.10
 type: application
 
 maintainers:

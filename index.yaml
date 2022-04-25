@@ -3,14 +3,14 @@ entries:
   gotosocial:
   - apiVersion: v2
     appVersion: 0.3.0
-    created: "2022-04-25T03:44:25.314701471Z"
+    created: "2022-04-25T19:55:36.188401313Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
       repository: https://charts.bitnami.com/bitnami
       version: ~11.0.06
     description: A Helm chart for Kubernetes
-    digest: 1dab31a4252e50ae2930685bf518b4ef6a774a2a83f87ce59756b5bcdc893050
+    digest: 9ae86e804eccf38838d21b4d38cfbce5fb8db79de2458f451302e282e2d4c5f7
     home: https://github.com/superseriousbusiness/gotosocial
     icon: https://docs.gotosocial.org/en/latest/assets/sloth.png
     maintainers:
@@ -24,7 +24,7 @@ entries:
     version: 0.0.9
   - apiVersion: v2
     appVersion: 0.3.0
-    created: "2022-04-25T03:44:25.310930342Z"
+    created: "2022-04-25T19:55:36.184783461Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -45,7 +45,7 @@ entries:
     version: 0.0.8
   - apiVersion: v2
     appVersion: 0.2.3
-    created: "2022-04-25T03:44:25.306377143Z"
+    created: "2022-04-25T19:55:36.180306353Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -66,7 +66,7 @@ entries:
     version: 0.0.7
   - apiVersion: v2
     appVersion: 0.2.3
-    created: "2022-04-25T03:44:25.30261352Z"
+    created: "2022-04-25T19:55:36.176680509Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -87,7 +87,7 @@ entries:
     version: 0.0.6
   - apiVersion: v2
     appVersion: 0.2.2
-    created: "2022-04-25T03:44:25.297947792Z"
+    created: "2022-04-25T19:55:36.172194815Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -108,7 +108,7 @@ entries:
     version: 0.0.5
   - apiVersion: v2
     appVersion: 0.2.1
-    created: "2022-04-25T03:44:25.294107606Z"
+    created: "2022-04-25T19:55:36.168505974Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -129,7 +129,7 @@ entries:
     version: 0.0.4
   - apiVersion: v2
     appVersion: 0.2.1
-    created: "2022-04-25T03:44:25.289345327Z"
+    created: "2022-04-25T19:55:36.164110209Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -150,7 +150,7 @@ entries:
     version: 0.0.3
   - apiVersion: v2
     appVersion: 0.2.0
-    created: "2022-04-25T03:44:25.28548782Z"
+    created: "2022-04-25T19:55:36.160435226Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -171,7 +171,7 @@ entries:
     version: 0.0.2
   - apiVersion: v2
     appVersion: 0.2.0
-    created: "2022-04-25T03:44:25.280779948Z"
+    created: "2022-04-25T19:55:36.156029957Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -190,10 +190,27 @@ entries:
     urls:
     - http://schoenwald.me/helm-charts/gotosocial-0.0.1.tgz
     version: 0.0.1
+  librespeed:
+  - apiVersion: v2
+    appVersion: 5.2.5
+    created: "2022-04-25T19:55:36.188753299Z"
+    description: Deployes the librespeed Container in Kubernetes
+    digest: f048ec63d4613151a879c18092b44f165b6f0b8beb9184df9d179504a6c56aca
+    home: https://github.com/librespeed/speedtest
+    icon: https://github.com/librespeed/speedtest/raw/master/.logo/logo3.png?raw=true
+    maintainers:
+    - email: 0hlov3@protonmail.com
+      name: 0hlov3
+      url: https://schoenwald.me
+    name: librespeed
+    type: application
+    urls:
+    - http://schoenwald.me/helm-charts/librespeed-0.0.1.tgz
+    version: 0.0.1
   matrix-synapse:
   - apiVersion: v2
     appVersion: v1.57.1
-    created: "2022-04-25T03:44:25.32409746Z"
+    created: "2022-04-25T19:55:36.197901564Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -204,7 +221,7 @@ entries:
       repository: https://charts.bitnami.com/bitnami
       version: ~16.5.2
     description: Deployes the Synapse Matrix Homeserver
-    digest: 5cdc545ed76423d3eb605079cd7f19becb7f3b76595579bab6066301d9ecec88
+    digest: 610753009a625507675000c4b99e58e752c7832d8bbd3c20d46fbe717e04df56
     home: https://github.com/matrix-org/synapse
     icon: https://matrix.org/images/matrix-logo.svg
     maintainers:
@@ -219,10 +236,10 @@ entries:
   pinafore:
   - apiVersion: v2
     appVersion: v2.1.0
-    created: "2022-04-25T03:44:25.325221071Z"
+    created: "2022-04-25T19:55:36.199740353Z"
     description: Pinafore is an an alternative web client for Mastodon, focused on
       speed and simplicity.
-    digest: f37e1880f484a37da2d20e92af481c3271e54f7d3c43dd2b7f1a5cc1313778c5
+    digest: ad2659492b2613e0a4375427d3102c0463ba29ad2132f57fdfd99f6fe6162923
     home: https://github.com/nolanlawson/pinafore
     icon: https://raw.githubusercontent.com/nolanlawson/pinafore/master/src/static/sailboat-icon.svg
     maintainers:
@@ -236,7 +253,7 @@ entries:
     version: 0.0.3
   - apiVersion: v2
     appVersion: v2.0.6
-    created: "2022-04-25T03:44:25.324865855Z"
+    created: "2022-04-25T19:55:36.199368156Z"
     description: Pinafore is an an alternative web client for Mastodon, focused on
       speed and simplicity.
     digest: 519ef8fecc13a065220632486b4f2d50c5aa3ad57710a217008691d11be86a2b
@@ -253,7 +270,7 @@ entries:
     version: 0.0.2
   - apiVersion: v2
     appVersion: v2.0.5
-    created: "2022-04-25T03:44:25.324501599Z"
+    created: "2022-04-25T19:55:36.198553009Z"
     description: Pinafore is an an alternative web client for Mastodon, focused on
       speed and simplicity.
     digest: 6c6d6d28b57a129f9c1db49123b35215cce0c9aac4641cc85ac64c2c0d31160f
@@ -271,10 +288,10 @@ entries:
   privatebin:
   - apiVersion: v2
     appVersion: 1.4.0
-    created: "2022-04-25T03:44:25.327458067Z"
+    created: "2022-04-25T19:55:36.201089982Z"
     description: PrivateBin is a minimalist, open source online pastebin where the
       server has zero knowledge of pasted data.
-    digest: 8d0b4cf0f43ef17d913e5f1164e661301b3e9735c8b77438f6d7525273c6179b
+    digest: ce4f32071f6b026c5abd1710126063087acf4d706255e9d63e48da420cd65c85
     home: https://github.com/PrivateBin/PrivateBin
     icon: https://privatebin.info/img/logo.png
     maintainers:
@@ -288,7 +305,7 @@ entries:
     version: 0.1.2
   - apiVersion: v2
     appVersion: 1.3.5
-    created: "2022-04-25T03:44:25.326966255Z"
+    created: "2022-04-25T19:55:36.200635198Z"
     description: PrivateBin is a minimalist, open source online pastebin where the
       server has zero knowledge of pasted data.
     digest: 0b0b488e712cb7c51335ae4440d01d9cc4570fdc0993ad933669a150f71d7b69
@@ -305,7 +322,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: 1.3.5
-    created: "2022-04-25T03:44:25.326215041Z"
+    created: "2022-04-25T19:55:36.20018404Z"
     description: A Helm chart for Kubernetes
     digest: b34ad21cd8c0aea0984d46eea8d1c0086ee04ce2019de0ab147f433698b6b922
     home: https://github.com/0hlov3/helm-charts/charts/privatebin
@@ -322,10 +339,10 @@ entries:
   vector-element:
   - apiVersion: v2
     appVersion: v1.10.10
-    created: "2022-04-25T03:44:25.32829234Z"
+    created: "2022-04-25T19:55:36.201882612Z"
     description: 'Element (formerly known as Vector and Riot) is a Matrix web client
       built using the Matrix React SDK. '
-    digest: 7d53519842d8de54912b2954b7855a0a61a7bc7d0d7c5656837f95127f894bc5
+    digest: d143ef58fc9c18819589919a33ee244965011ed367b8b3665c063255fcc55dc3
     home: https://github.com/0hlov3/helm-charts/helm-charts/vector-element
     icon: https://element.io/images/element-logo.svg
     maintainers:
@@ -339,7 +356,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: v1.10.6
-    created: "2022-04-25T03:44:25.327895262Z"
+    created: "2022-04-25T19:55:36.201509264Z"
     description: 'Element (formerly known as Vector and Riot) is a Matrix web client
       built using the Matrix React SDK. '
     digest: c7f0ebd5e41c544d5b0f7a600d0c48bc1d20a60b9308beceb1d9e16607937305
@@ -354,4 +371,4 @@ entries:
     urls:
     - http://schoenwald.me/helm-charts/vector-element-0.1.0.tgz
     version: 0.1.0
-generated: "2022-04-25T03:44:25.276620664Z"
+generated: "2022-04-25T19:55:36.151983715Z"

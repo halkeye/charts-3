@@ -6,7 +6,7 @@ home: https://github.com/matrix-org/synapse
 #ChartVersion
 version: 0.1.0
 # MatrixVersion
-appVersion: v1.54.0
+appVersion: v1.57.1
 type: application
 
 maintainers:

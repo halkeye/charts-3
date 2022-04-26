@@ -56,13 +56,7 @@ gotosocial:
       - "172.16.0.0/12"
       - "192.168.0.0/16"
     db:
-      type: ""
-      address: ""
-      user: ""
-      password: ""
-      database: ""
-      tlsMode: ""
-      tlsCaCert: ""
+      sqlite_address:
     web:
       templateBaseDir: "./web/template/" 
       assetBaseDir: "./web/assets/"
@@ -124,6 +118,20 @@ postgresql:
       # existingClaim:
       # storageClass:
       size: 10Gi
+
+externalPostgresql:
+  enabled: false
+  # host: postgres
+  # port: 5432
+  ## The name of an existing secret with postgresql credentials
+  # username: GoToSocial
+  ## Password key to be retrieved from existing secret
+  # password: GoToSocial
+  ## The name of an existing secret with postgresql credentials
+  # existingSecret: postgres-secrets
+  ## Password key to be retrieved from existing secret
+  # existingSecretPasswordKey: postgres-password
+  database: GoToSocial
 
 imagePullSecrets: []
 nameOverride: ""

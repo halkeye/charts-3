@@ -68,6 +68,31 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.postgresql.auth.existingSecret }}
                   key: password
+          {{ else if .Values.externalPostgresql.enabled }}
+            - name: GTS_DB_TYPE
+              value: postgres
+            - name: GTS_DB_ADDRESS
+              value: ".Values.externalPostgresql.host"
+            - name: GTS_DB_PORT
+              value: ".Values.externalPostgresql.port"
+            - name: GTS_DB_USER
+              value: "{{ .Values.externalPostgresql.username }}"
+            - name: GTS_DB_DATABASE
+              value: "{{ .Values.externalPostgresql.database }}"
+            - name: GTS_DB_PASSWORD
+              {{ if .Values.externalPostgresql.existingSecret }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.externalPostgresql.existingSecret }}
+                  key: {{ .Values.externalPostgresql.existingSecretPasswordKey }}
+              {{ else }}
+              value: {{ .Values.externalPostgresql.password }}
+              {{ end }}
+          {{ else }}
+            - name: GTS_DB_TYPE
+              value: sqlite
+            - name: GTS_DB_ADDRESS
+              value: {{ .Values.gotosocial.config.db.sqlite_address | default "/gotosocial/storage/sqlite.db" }}
           {{- end }}
           volumeMounts:
             - name: gotosocial-config

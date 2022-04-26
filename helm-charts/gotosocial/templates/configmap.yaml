@@ -19,18 +19,18 @@ data:
     {{- if .Values.gotosocial.config.trustedProxies -}}
       {{ .Values.gotosocial.config.trustedProxies | toYaml | nindent 6 }}
     {{- end }}
-    {{- if eq .Values.gotosocial.config.db.type "sqlite" }}
-    ############################
-    ##### DATABASE CONFIG ######
-    ############################
-    db-type: {{ .Values.gotosocial.config.db.type | default "sqlite" }}
-    db-address: {{ .Values.gotosocial.config.db.address | default "/gotosocial/storage/sqlite.db" }} 
-    db-user: {{ .Values.gotosocial.config.db.user | default "gotosocial" }}
-    db-password: {{ .Values.gotosocial.config.db.password }}
-    db-database: {{ .Values.gotosocial.config.db.database | default "gotosocial" }}
-    db-tls-mode: {{ .Values.gotosocial.config.db.tlsMode | default "disable" }}
-    db-tls-ca-cert: {{ .Values.gotosocial.config.db.tlsCaCert | default "" }}
-    {{- end }}
+    #{{- if eq .Values.gotosocial.config.db.type "sqlite" }}
+    #############################
+    ###### DATABASE CONFIG ######
+    #############################
+    #db-type: {{ .Values.gotosocial.config.db.type | default "sqlite" }}
+    #db-address: {{ .Values.gotosocial.config.db.address | default "/gotosocial/storage/sqlite.db" }} 
+    #db-user: {{ .Values.gotosocial.config.db.user | default "gotosocial" }}
+    #db-password: {{ .Values.gotosocial.config.db.password }}
+    #db-database: {{ .Values.gotosocial.config.db.database | default "gotosocial" }}
+    #db-tls-mode: {{ .Values.gotosocial.config.db.tlsMode | default "disable" }}
+    #db-tls-ca-cert: {{ .Values.gotosocial.config.db.tlsCaCert | default "" }}
+    #{{- end }}
     ######################
     ##### WEB CONFIG #####
     ######################

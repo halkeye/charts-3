@@ -1,12 +1,12 @@
 [![CircleCI](https://circleci.com/gh/0hlov3/helm-charts/tree/main.svg?style=svg)](https://circleci.com/gh/0hlov3/helm-charts/tree/main)
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/maxxblow)](https://artifacthub.io/packages/search?repo=maxxblow)
-[![pages-build-deployment](https://github.com/0hlov3/helm-charts/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/0hlov3/helm-charts/actions/workflows/pages/pages-build-deployment)
+[![pages-build-deployment](https://github.com/Maxxblow/charts/actions/workflows/pages/pages-build-deployment/badge.svg?branch=main)](https://github.com/Maxxblow/charts/actions/workflows/pages/pages-build-deployment)
 # helm-charts
 0hlov3s Public Helm Charts
 
 ## Add Charts
 ```shell
-helm repo add 0hlov3 https://maxxblow.de/helm-charts/
+helm repo add maxxblow https://maxxblow.de/helm-charts/
 helm repo update
 ```
 

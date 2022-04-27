@@ -1,0 +1,15 @@
+apiVersion: v2
+name: matrix-synapse-admin
+description: Deployes the Synapse Matrix Admin
+home: https://github.com/Awesome-Technologies/synapse-admin
+
+type: application
+# ChartVersion
+version: 0.0.1
+# matrix-synapse-admin
+appVersion: "0.8.5"
+
+maintainers:
+  - name: 0hlov3
+    email: 0hlov3@protonmail.com
+    url: https://schoenwald.me

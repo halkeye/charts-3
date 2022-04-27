@@ -6,7 +6,7 @@
 
 ## Add Charts
 ```shell
-helm repo add 0hlov3 http://schoenwald.me/helm-charts/
+helm repo add 0hlov3 https://maxxblow.de/helm-charts/
 helm repo update
 ```
 
@@ -23,5 +23,5 @@ helm package helm-charts/*
 
 ### Create the Helm chart repository index
 ```shell
-helm repo index --url http://schoenwald.me/helm-charts/ .
+helm repo index --url https://maxxblow.de/helm-charts/ .
 ```

@@ -21,7 +21,7 @@ jobs:
           command: "helm package helm-charts/*"
       - run:
           name: "Helm repo index"
-          command: "helm repo index --url http://schoenwald.me/helm-charts/ ."
+          command: "helm repo index --url https://maxxblow.de/helm-charts/ ."
       - run:
           name: "Git config"
           command: |

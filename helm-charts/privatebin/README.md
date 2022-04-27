@@ -7,7 +7,7 @@ Install the [PrivateBin](https://github.com/PrivateBin/PrivateBin) web client fo
 
 ## Get Repo Info
 ``` shell
-helm repo add 0hlov3 http://schoenwald.me/helm-charts/
+helm repo add 0hlov3 https://maxxblow.de/helm-charts/
 helm repo update
 ```
 _See [helm repo](https://helm.sh/docs/helm/helm_repo/) for command documentation._

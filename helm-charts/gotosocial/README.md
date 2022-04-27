@@ -11,7 +11,7 @@ kubectl create secret generic gts-postgresql-secret --from-literal="password=$(o
 ```
 ### Deploy Helm Chart
 ```shell
-helm repo add 0hlov3 http://schoenwald.me/helm-charts/
+helm repo add 0hlov3 https://maxxblow.de/helm-charts/
 helm repo update
 helm upgrade --install gotosocial 0hlov3/gotosocial --namespace gotosocial --create-namespace --set gotosocial.config.host='domain.tld' --set gotosocial.config.accountDomain='domain.tld'
 ```

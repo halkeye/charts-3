@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "matrix-synapse-admin.fullname" . }}
+  labels:
+    {{- include "matrix-synapse-admin.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: synapse-admin
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "matrix-synapse-admin.selectorLabels" . | nindent 4 }}

@@ -25,3 +25,4 @@ helm package helm-charts/*
 ```shell
 helm repo index --url https://maxxblow.de/helm-charts/ .
 ```
+

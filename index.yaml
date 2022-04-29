@@ -1,0 +1,19 @@
+apiVersion: v1
+entries:
+  matrix-synapse-admin:
+  - apiVersion: v2
+    appVersion: 0.8.5
+    created: "2022-04-29T22:04:27.469130876Z"
+    description: Deployes the Synapse Matrix Admin
+    digest: e66065e4cd3e3f32569deb30ed0b7c6d0e6b8586fc17756fb4477ecce52aa20e
+    home: https://github.com/Awesome-Technologies/synapse-admin
+    maintainers:
+    - email: 0hlov3@protonmail.com
+      name: 0hlov3
+      url: https://schoenwald.me
+    name: matrix-synapse-admin
+    type: application
+    urls:
+    - https://github.com/Maxxblow/charts/releases/download/matrix-synapse-admin-0.0.2/matrix-synapse-admin-0.0.2.tgz
+    version: 0.0.2
+generated: "2022-04-29T22:04:27.469135976Z"

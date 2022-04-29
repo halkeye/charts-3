@@ -5,7 +5,7 @@ home: https://github.com/Awesome-Technologies/synapse-admin
 
 type: application
 # ChartVersion
-version: 0.0.2
+version: 0.0.3
 # matrix-synapse-admin
 appVersion: "0.8.5"
 

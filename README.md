@@ -4,25 +4,23 @@
 # helm-charts
 0hlov3s Public Helm Charts
 
-## Add Charts
-```shell
-helm repo add maxxblow https://maxxblow.de/helm-charts/
-helm repo update
-```
+## Usage
 
-## Development
-### Lint the chart
-```shell
-helm lint helm-charts/*
-```
+[Helm](https://helm.sh) must be installed to use the charts.  Please refer to
+Helm's [documentation](https://helm.sh/docs) to get started.
 
-### Create the Helm chart package
-```shell
-helm package helm-charts/*
-```
+Once Helm has been set up correctly, add the repo as follows:
 
-### Create the Helm chart repository index
-```shell
-helm repo index --url https://maxxblow.de/helm-charts/ .
-```
+  helm repo add maxxblow https://maxxblow.de/charts
 
+If you had already added this repo earlier, run `helm repo update` to retrieve
+the latest versions of the packages.  You can then run `helm search repo
+maxxblow` to see the charts.
+
+To install the <chart-name> chart:
+
+    helm install my-<chart-name> <alias>/<chart-name>
+
+To uninstall the chart:
+
+    helm delete my-<chart-name>

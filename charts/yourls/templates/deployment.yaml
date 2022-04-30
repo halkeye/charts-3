@@ -36,7 +36,10 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: yourls
-              containerPort: 80
+              containerPort: {{ .Values.yourls.httpPort }}
+              protocol: TCP
+            - name: yourlshttps
+              containerPort: {{ .Values.yourls.httpsPort }}
               protocol: TCP
           livenessProbe:
             httpGet:

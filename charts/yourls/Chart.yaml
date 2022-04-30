@@ -1,0 +1,24 @@
+apiVersion: v2
+name: yourls
+description: A Helm chart to deploy yourls on your Kubernetes Cluster
+icon: https://yourls.org/images/yourls-logo.svg
+home: https://yourls.org
+
+type: application
+# Chart Version
+version: 0.0.1
+# Yourls Version
+appVersion: "1.9"
+
+dependencies:
+  - name: mysql
+    repository: https://charts.bitnami.com/bitnami
+    version: ^8.9.6
+    condition: mysql.enabled
+    tags:
+      - yourls-database
+
+maintainers:
+  - name: 0hlov3
+    email: 0hlov3@protonmail.com
+    url: https://schoenwald.me

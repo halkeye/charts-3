@@ -1,0 +1,123 @@
+{{- $fullName := include "yourls.fullname" . -}}
+{{- $mysqlHost := include "yourls.mysql.host" . }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "yourls.fullname" . }}
+  labels:
+    {{- include "yourls.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "yourls.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "yourls.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "yourls.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: yourls
+              containerPort: {{ .Values.yourls.httpPort }}
+              protocol: TCP
+            - name: yourlshttps
+              containerPort: {{ .Values.yourls.httpsPort }}
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /admin
+              port: yourls
+          readinessProbe:
+            httpGet:
+              path: /admin
+              port: yourls
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          env:
+            - name: YOURLS_SITE
+              value: {{ .Values.yourls.site | quote }}
+            - name: YOURLS_USER
+              value: {{ .Values.yourls.username | quote }}
+            - name: YOURLS_UNIQUE_URLS
+              value: {{ .Values.yourls.uniqueURLS | quote }}
+            - name: YOURLS_PRIVATE
+              value: {{ .Values.yourls.private | quote }}
+          {{- if .Values.yourls.cookiekey }}
+            - name: YOURLS_COOKIEKEY
+              value: {{ .Values.yourls.cookiekey | quote }}
+          {{- end }}
+            - name: YOURLS_URL_CONVERT
+              value: {{ .Values.yourls.urlConvert | quote }}
+            - name: YOURLS_DEBUG
+              value: {{ .Values.yourls.debug | quote }}
+          {{- if .Values.yourls.password }}
+            - name: YOURLS_PASS
+              value: {{ .Values.yourls.password | quote }}
+          {{- else }}
+            - name: YOURLS_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.yourls.existingSecret | quote }}
+                  key: password
+          {{- end }}
+            - name: APACHE_HTTP_PORT_NUMBER
+              value: {{ .Values.yourls.httpPort | quote }}
+            - name: APACHE_HTTPS_PORT_NUMBER
+              value: {{ .Values.yourls.httpsPort | quote }}
+          {{- if .Values.mysql.enabled }}
+            - name: YOURLS_DB_HOST
+              value: {{ $mysqlHost }}
+            - name: YOURLS_DB_USER
+              value: {{ .Values.mysql.auth.username | quote }}
+            {{- if .Values.mysql.auth.password }}
+            - name: YOURLS_DB_PASS
+              value: {{ .Values.mysql.auth.password | quote }}
+            {{- else }}
+            - name: YOURLS_DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mysql.auth.existingSecret }}
+                  key: mysql-password
+            {{- end }}
+            - name: YOURLS_DB_NAME
+              value: {{ .Values.mysql.auth.database | quote }}
+          {{- else if .Values.externalMysql.enabled }}
+            - name: YOURLS_DB_USER
+              value: {{ .Values.externalMysql.auth.username | quote }}
+            - name: YOURLS_DB_PASS
+              value: {{ .Values.externalMysql.auth.password | quote }}
+            - name: YOURLS_DB_HOST
+              value: {{ .Values.externalMysql.auth.mysqlHost | quote }}
+            - name: YOURLS_DB_NAME
+              value: {{ .Values.externalMysql.auth.database | quote }}
+          {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

@@ -8,9 +8,7 @@ metadata:
   labels:
     {{- include "yourls.labels" . | nindent 4 }}
 spec:
-  {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
-  {{- end }}
   selector:
     matchLabels:
       {{- include "yourls.selectorLabels" . | nindent 6 }}
@@ -37,54 +35,58 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - name: http
+            - name: yourls
               containerPort: 80
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /
-              port: http
+              path: /admin
+              port: yourls
           readinessProbe:
             httpGet:
-              path: /
-              port: http
+              path: /admin
+              port: yourls
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           env:
             - name: YOURLS_SITE
-              value: {{ .Values.yourls.site }}
+              value: {{ .Values.yourls.site | quote }}
             - name: YOURLS_USER
-              value: {{ .Values.yourls.username }}
+              value: {{ .Values.yourls.username | quote }}
             - name: YOURLS_UNIQUE_URLS
-              value: {{ .Values.yourls.uniqueURLS }}
+              value: {{ .Values.yourls.uniqueURLS | quote }}
             - name: YOURLS_PRIVATE
-              value: {{ .Values.yourls.private }}
+              value: {{ .Values.yourls.private | quote }}
           {{- if .Values.yourls.cookiekey }}
             - name: YOURLS_COOKIEKEY
-              value: {{ .Values.yourls.cookiekey }}
+              value: {{ .Values.yourls.cookiekey | quote }}
           {{- end }}
             - name: YOURLS_URL_CONVERT
-              value: {{ .Values.yourls.urlConvert }}
+              value: {{ .Values.yourls.urlConvert | quote }}
             - name: YOURLS_DEBUG
-              value: {{ .Values.yourls.debug }}
+              value: {{ .Values.yourls.debug | quote }}
           {{- if .Values.yourls.password }}
             - name: YOURLS_PASS
-              value: {{ .Values.yourls.password }}
+              value: {{ .Values.yourls.password | quote }}
           {{- else }}
             - name: YOURLS_PASS
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.yourls.existingSecret }}
+                  name: {{ .Values.yourls.existingSecret | quote }}
                   key: password
           {{- end }}
+            - name: APACHE_HTTP_PORT_NUMBER
+              value: {{ .Values.yourls.httpPort | quote }}
+            - name: APACHE_HTTPS_PORT_NUMBER
+              value: {{ .Values.yourls.httpsPort | quote }}
           {{- if .Values.mysql.enabled }}
             - name: YOURLS_DB_HOST
-              value: "{{ $mysqlHost }}"
+              value: {{ $mysqlHost }}
             - name: YOURLS_DB_USER
-              value: "{{ .Values.mysql.auth.username }}"
+              value: {{ .Values.mysql.auth.username | quote }}
             {{- if .Values.mysql.auth.password }}
             - name: YOURLS_DB_PASS
-              value: {{ .Values.mysql.auth.password }}
+              value: {{ .Values.mysql.auth.password | quote }}
             {{- else }}
             - name: YOURLS_DB_PASS
               valueFrom:
@@ -93,16 +95,16 @@ spec:
                   key: mysql-password
             {{- end }}
             - name: YOURLS_DB_NAME
-              value: {{ .Values.mysql.databse }}
-          {{- else if .Values.externalPostgresql.enabled }}
+              value: {{ .Values.mysql.auth.database | quote }}
+          {{- else if .Values.externalMysql.enabled }}
             - name: YOURLS_DB_USER
-              value: {{ .Values.externalMysql.auth.username }}
+              value: {{ .Values.externalMysql.auth.username | quote }}
             - name: YOURLS_DB_PASS
-              value: {{ .Values.externalMysql.auth.password }}
+              value: {{ .Values.externalMysql.auth.password | quote }}
             - name: YOURLS_DB_HOST
-              value: {{ .Values.externalMysql.auth.mysqlHost }}
+              value: {{ .Values.externalMysql.auth.mysqlHost | quote }}
             - name: YOURLS_DB_NAME
-              value: {{ .Values.externalMysql.auth.database }}
+              value: {{ .Values.externalMysql.auth.database | quote }}
           {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:

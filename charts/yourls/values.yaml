@@ -11,40 +11,41 @@ image:
   tag: ""
 
 yourls:
-  site: https://example.com # YOURLS instance URL, no trailing slash, lowercase.
-  username: admin # YOURLS instance username
+  site: "https://example.com" # YOURLS instance URL, no trailing slash, lowercase.
+  username: "admin" # YOURLS instance username
   # password: 
-  existingSecret: yourls-secret
+  existingSecret: "yourls-secret"
   # Allow multiple short URLs for a same long URL
   # Set to true to have only one pair of shortURL/longURL (default YOURLS behavior)
   # Set to false to allow multiple short URLs pointing to the same long URL (bit.ly behavior)
-  uniqueURLS: true
+  uniqueURLS: "true"
   # Private means the Admin area will be protected with login/pass as defined below.
   # Set to false for public usage (eg on a restricted intranet or for test setups)
   # Read http://yourls.org/privatepublic for more details if you're unsure
-  private: true
+  private: "true"
   # URL shortening method: 36 or 62
   # 36: generates all lowercase keywords (ie: 13jkm)
   # 62: generates mixed case keywords (ie: 13jKm or 13JKm)
   urlConvert: 62
   # Debug mode to output some internal information
   # Default is false for live site. Enable when coding or before submitting a new issue
-  debug: false
+  debug: "false"
   # A random secret hash used to encrypt cookies. You don't have to remember it, make it long and complicated
   # Hint: copy from http://yourls.org/cookie
   # cookiekey: # openssl rand -hex 12
-
+  httpPort: 80
+  httpsPort: 443
 
 
 mysql:
   enabled: true
   auth:
     # rootPassword: # Password for the root user. Ignored if existing secret is provided
-    database: yourls
-    username: yourls
+    database: "yourls"
+    username: "yourls"
     # password:      # Password for the new user. Ignored if existing secret is provided
     # mysql-replication-password: MySQL replication user password. Ignored if existing secret is provided
-    existingSecret: yourls-mysql-secret
+    existingSecret: "yourls-mysql-secret"
   persistence:
     enabled: true
     # existingClaim:
@@ -54,11 +55,17 @@ mysql:
 externalMysql:
   enabled: false
   auth:
-    database: yourls
-    username: yourls
-    password: SomePassword
-    mysqlHost: external.db.host
-  
+    database: "yourls"
+    username: "yourls"
+    password: "SomePassword"
+    mysqlHost: "external.db.host"
+
+podSecurityContext:
+  fsGroup: 1001
+
+securityContext:
+  runAsGroup: 1001
+
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
@@ -73,17 +80,6 @@ serviceAccount:
   name: ""
 
 podAnnotations: {}
-
-podSecurityContext: {}
-  # fsGroup: 2000
-
-securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
 
 service:
   type: ClusterIP
@@ -101,21 +97,21 @@ ingress:
         - path: /
           pathType: ImplementationSpecific
   tls: []
-  #  - secretName: chart-example-tls
+  #  - secretName: tls-yourls-general
   #    hosts:
   #      - chart-example.local
 
-resources: {}
+resources:
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
 
 nodeSelector: {}
 

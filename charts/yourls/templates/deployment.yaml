@@ -1,0 +1,118 @@
+{{- $fullName := include "yourls.fullname" . -}}
+{{- $mysqlHost := include "yourls.mysql.host" . }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "yourls.fullname" . }}
+  labels:
+    {{- include "yourls.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "yourls.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "yourls.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "yourls.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          env:
+            - name: YOURLS_SITE
+              value: {{ .Values.yourls.site }}
+            - name: YOURLS_USER
+              value: {{ .Values.yourls.username }}
+            - name: YOURLS_UNIQUE_URLS
+              value: {{ .Values.yourls.uniqueURLS }}
+            - name: YOURLS_PRIVATE
+              value: {{ .Values.yourls.private }}
+          {{- if .Values.yourls.cookiekey }}
+            - name: YOURLS_COOKIEKEY
+              value: {{ .Values.yourls.cookiekey }}
+          {{- end }}
+            - name: YOURLS_URL_CONVERT
+              value: {{ .Values.yourls.urlConvert }}
+            - name: YOURLS_DEBUG
+              value: {{ .Values.yourls.debug }}
+          {{- if .Values.yourls.password }}
+            - name: YOURLS_PASS
+              value: {{ .Values.yourls.password }}
+          {{- else }}
+            - name: YOURLS_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.yourls.existingSecret }}
+                  key: password
+          {{- end }}
+          {{- if .Values.mysql.enabled }}
+            - name: YOURLS_DB_HOST
+              value: "{{ $mysqlHost }}"
+            - name: YOURLS_DB_USER
+              value: "{{ .Values.mysql.auth.username }}"
+            {{- if .Values.mysql.auth.password }}
+            - name: YOURLS_DB_PASS
+              value: {{ .Values.mysql.auth.password }}
+            {{- else }}
+            - name: YOURLS_DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mysql.auth.existingSecret }}
+                  key: mysql-password
+            {{- end }}
+            - name: YOURLS_DB_NAME
+              value: {{ .Values.mysql.databse }}
+          {{- else if .Values.externalPostgresql.enabled }}
+            - name: YOURLS_DB_USER
+              value: {{ .Values.externalMysql.auth.username }}
+            - name: YOURLS_DB_PASS
+              value: {{ .Values.externalMysql.auth.password }}
+            - name: YOURLS_DB_HOST
+              value: {{ .Values.externalMysql.auth.mysqlHost }}
+            - name: YOURLS_DB_NAME
+              value: {{ .Values.externalMysql.auth.database }}
+          {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

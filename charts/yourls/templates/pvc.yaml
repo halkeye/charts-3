@@ -1,0 +1,20 @@
+{{- if .Values.yourls.persistence.enabled }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "yourls.fullname" . }}-data
+spec:
+  accessModes:
+    - {{ .Values.yourls.persistence.accessMode | quote }}
+  resources:
+    requests:
+      storage: {{ .Values.yourls.persistence.size | quote }}
+{{- if .Values.yourls.persistence.storageClass }}
+{{- if (eq "-" .Values.yourls.persistence.storageClass) }}
+  storageClassName: ""
+{{- else }}
+  storageClassName: "{{ .Values.persistence.storageClass }}"
+{{- end }}
+{{- end }}
+{{- end }}

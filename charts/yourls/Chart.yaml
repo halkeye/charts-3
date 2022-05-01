@@ -6,7 +6,7 @@ home: https://yourls.org
 
 type: application
 # Chart Version
-version: 0.0.1
+version: 0.0.2
 # Yourls Version
 appVersion: "1.9"
 

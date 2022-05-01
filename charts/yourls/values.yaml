@@ -35,6 +35,10 @@ yourls:
   # cookiekey: # openssl rand -hex 12
   httpPort: 80
   httpsPort: 443
+  persistence:
+    enabled: false
+    accessMode: "ReadWriteOnce"
+    size: "512Mi"
 
 
 mysql:
@@ -47,10 +51,10 @@ mysql:
     # mysql-replication-password: MySQL replication user password. Ignored if existing secret is provided
     existingSecret: "yourls-mysql-secret"
   persistence:
-    enabled: true
+    enabled: false
     # existingClaim:
     # storageClass:
-    size: 5Gi
+    size: "1Gi"
 
 externalMysql:
   enabled: false

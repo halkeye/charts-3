@@ -3,7 +3,7 @@
 [![Release Charts](https://github.com/Maxxblow/charts/actions/workflows/release.yml/badge.svg)](https://github.com/Maxxblow/charts/actions/workflows/release.yml)
 [![pages-build-deployment](https://github.com/Maxxblow/charts/actions/workflows/pages/pages-build-deployment/badge.svg?branch=main)](https://github.com/Maxxblow/charts/actions/workflows/pages/pages-build-deployment)
 # Helm Charts
-Find your favorite application in our catalog and launch it. :)
+Find your favorite application and launch it. :)
 
 ## Usage
 
@@ -33,3 +33,6 @@ To uninstall the chart:
 
 ## Need Help?
  - [#charts:matrix.fedi.tech @ Synapse](https://matrix.to/#/#charts:matrix.fedi.tech)
+
+## Want to Contribute?
+ - [#charts-development:matrix.fedi.tech](https://matrix.to/#/#charts-development:matrix.fedi.tech)

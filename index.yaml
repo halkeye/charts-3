@@ -153,6 +153,29 @@ entries:
   yourls:
   - apiVersion: v2
     appVersion: "1.9"
+    created: "2022-05-01T21:12:02.428355545Z"
+    dependencies:
+    - condition: mysql.enabled
+      name: mysql
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - yourls-database
+      version: ^8.9.6
+    description: A Helm chart to deploy yourls on your Kubernetes Cluster
+    digest: d7cf45f89d7b9130e56f3c34d91e99908e255b7a399a2439179ee80da137e7fb
+    home: https://yourls.org
+    icon: https://yourls.org/images/yourls-logo.svg
+    maintainers:
+    - email: 0hlov3@protonmail.com
+      name: 0hlov3
+      url: https://schoenwald.me
+    name: yourls
+    type: application
+    urls:
+    - https://github.com/Maxxblow/charts/releases/download/yourls-0.0.2/yourls-0.0.2.tgz
+    version: 0.0.2
+  - apiVersion: v2
+    appVersion: "1.9"
     created: "2022-04-30T07:21:06.776094003Z"
     dependencies:
     - condition: mysql.enabled
@@ -174,4 +197,4 @@ entries:
     urls:
     - https://github.com/Maxxblow/charts/releases/download/yourls-0.0.1/yourls-0.0.1.tgz
     version: 0.0.1
-generated: "2022-04-30T07:21:06.776125404Z"
+generated: "2022-05-01T21:12:02.428368045Z"

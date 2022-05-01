@@ -2,8 +2,8 @@
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/maxxblow)](https://artifacthub.io/packages/search?repo=maxxblow)
 [![Release Charts](https://github.com/Maxxblow/charts/actions/workflows/release.yml/badge.svg)](https://github.com/Maxxblow/charts/actions/workflows/release.yml)
 [![pages-build-deployment](https://github.com/Maxxblow/charts/actions/workflows/pages/pages-build-deployment/badge.svg?branch=main)](https://github.com/Maxxblow/charts/actions/workflows/pages/pages-build-deployment)
-# helm-charts
-0hlov3s Public Helm Charts
+# Helm Charts
+Find your favorite application in our catalog and launch it. :)
 
 ## Usage
 
@@ -25,3 +25,6 @@ To install the <chart-name> chart:
 To uninstall the chart:
 
     helm delete my-<chart-name>
+
+## Need Help?
+ - [#charts:matrix.fedi.tech @ Synapse](https://matrix.to/#/#charts:matrix.fedi.tech)

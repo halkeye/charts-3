@@ -23,7 +23,7 @@ maxxblow` to see the charts.
 To install the <chart-name> chart:
 
 ```shell
-  helm install my-<chart-name> <alias>/<chart-name>
+  helm install my-<chart-name> maxxblow/<chart-name>
 ```
 
 To uninstall the chart:

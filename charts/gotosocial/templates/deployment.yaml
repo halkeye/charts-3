@@ -94,6 +94,14 @@ spec:
             - name: GTS_DB_ADDRESS
               value: {{ .Values.gotosocial.config.db.sqlite_address | default "/gotosocial/storage/sqlite.db" }}
           {{- end }}
+          {{- if .Values.gotosocial.config.existingSecretName }}
+            - name: GTS_SMTP_PASSWORD
+              value: 
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.gotosocial.config.smtp.existingSecretName }}
+                  key: {{ .Values.gotosocial.config.smtp.existingSecretKey }}
+          {{- end }}
           volumeMounts:
             - name: gotosocial-config
               mountPath: "/config/"

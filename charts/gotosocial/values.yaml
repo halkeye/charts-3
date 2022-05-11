@@ -48,6 +48,7 @@ gotosocial:
     #storageClass: ""
   config:
     #logLevel: "info"
+    #logDBQueries: ""
     #applicationName: "gotosocial"
     #host: ""
     #accountDomain: ""
@@ -98,7 +99,9 @@ gotosocial:
       host: ""
       port: ""
       userName: ""
-      password: ""
+      # password: ""
+      # existingSecretName: ""
+      # existingSecretKey: ""
       from: ""
     syslog:
       enabled: ""

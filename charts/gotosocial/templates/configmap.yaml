@@ -8,6 +8,7 @@ data:
     ##### GENERAL CONFIG ######
     ###########################
     log-level: {{ .Values.gotosocial.config.logLevel | default "info" }}
+    log-db-queries: {{ .Values.gotosocial.config.logDBQueries | default false }}
     application-name: {{ .Values.gotosocial.config.applicationName | default "gotosocial" }}
     host: {{ .Values.gotosocial.config.host }}
     account-domain: {{ .Values.gotosocial.config.accountDomain }}

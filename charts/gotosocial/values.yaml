@@ -48,6 +48,7 @@ gotosocial:
     #storageClass: ""
   config:
     #logLevel: "info"
+    #logDBQueries: ""
     #applicationName: "gotosocial"
     #host: ""
     #accountDomain: ""

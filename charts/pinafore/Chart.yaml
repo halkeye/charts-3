@@ -7,9 +7,9 @@ home: https://github.com/nolanlawson/pinafore
 
 type: application
 # Chart Version
-version: "0.0.5"
+version: "0.0.6"
 # gotosocial version
-appVersion: "v2.2.0"
+appVersion: "v2.2.1"
 
 maintainers:
   - name: 0hlov3

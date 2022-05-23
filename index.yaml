@@ -190,6 +190,23 @@ entries:
     version: 0.0.2
   pinafore:
   - apiVersion: v2
+    appVersion: v2.2.1
+    created: "2022-05-23T04:16:44.480480508Z"
+    description: Pinafore is an an alternative web client for Mastodon, focused on
+      speed and simplicity.
+    digest: e440cd64a4809b7fa27c320f18af5424d5f9b9f09392fbd98bf342581e37e18b
+    home: https://github.com/nolanlawson/pinafore
+    icon: https://raw.githubusercontent.com/nolanlawson/pinafore/master/src/static/sailboat-icon.svg
+    maintainers:
+    - email: 0hlov3@protonmail.com
+      name: 0hlov3
+      url: https://schoenwald.me
+    name: pinafore
+    type: application
+    urls:
+    - https://github.com/Maxxblow/charts/releases/download/pinafore-0.0.6/pinafore-0.0.6.tgz
+    version: 0.0.6
+  - apiVersion: v2
     appVersion: v2.2.0
     created: "2022-05-01T21:12:07.718900112Z"
     description: Pinafore is an an alternative web client for Mastodon, focused on
@@ -306,4 +323,4 @@ entries:
     urls:
     - https://github.com/Maxxblow/charts/releases/download/yourls-0.0.1/yourls-0.0.1.tgz
     version: 0.0.1
-generated: "2022-05-23T03:58:21.618305558Z"
+generated: "2022-05-23T04:16:44.48064351Z"

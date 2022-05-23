@@ -260,6 +260,23 @@ entries:
     version: 0.1.3
   vector-element:
   - apiVersion: v2
+    appVersion: v1.10.12
+    created: "2022-05-23T04:39:24.863253307Z"
+    description: 'Element (formerly known as Vector and Riot) is a Matrix web client
+      built using the Matrix React SDK. '
+    digest: 26775d3c2636b24984ae60417c8ead5dfb0372528fbbaad1a347b510ae4c3739
+    home: https://github.com/vector-im/element-web/
+    icon: https://element.io/images/element-logo.svg
+    maintainers:
+    - email: 0hlov3@protonmail.com
+      name: 0hlov3
+      url: https://schoenwald.me
+    name: vector-element
+    type: application
+    urls:
+    - https://github.com/Maxxblow/charts/releases/download/vector-element-0.1.3/vector-element-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v2
     appVersion: v1.10.10
     created: "2022-04-29T22:19:26.94353928Z"
     description: 'Element (formerly known as Vector and Riot) is a Matrix web client
@@ -323,4 +340,4 @@ entries:
     urls:
     - https://github.com/Maxxblow/charts/releases/download/yourls-0.0.1/yourls-0.0.1.tgz
     version: 0.0.1
-generated: "2022-05-23T04:16:44.48064351Z"
+generated: "2022-05-23T04:39:24.863300507Z"

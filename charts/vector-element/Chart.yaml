@@ -4,11 +4,11 @@ name: vector-element
 description: |
   Element (formerly known as Vector and Riot) is a Matrix web client built using the Matrix React SDK.
 icon: https://element.io/images/element-logo.svg
-home: https://github.com/0hlov3/helm-charts/helm-charts/vector-element
+home: https://github.com/vector-im/element-web/
 #ChartVersion
-version: 0.1.2
+version: 0.1.3
 # MatrixVersion
-appVersion: v1.10.10
+appVersion: v1.10.12
 type: application
 
 maintainers:

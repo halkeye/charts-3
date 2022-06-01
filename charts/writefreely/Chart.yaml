@@ -16,3 +16,9 @@ maintainers:
   - name: 0hlov3
     email: 0hlov3@protonmail.com
     url: https://schoenwald.me
+
+dependencies:
+  - name: mariadb
+    version: ~11.0.9
+    repository: https://charts.bitnami.com/mariadb
+    condition: mariadb.enabled

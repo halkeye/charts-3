@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: nginx
+  repository: writeas/writefreely
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
@@ -80,3 +80,15 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+mariadb:
+  enabled: true
+  auth:
+    rootPassword:
+    database:
+    username: writefreely
+    password:
+    replicationUser: replicator
+    replicationPassword:
+    existingSecret:  # Use existing secret for password details (auth.rootPassword, auth.password, auth.replicationPassword will be ignored and picked up from this secret). The secret has to contain the keys mariadb-root-password, mariadb-replication-password and mariadb-password
+  initdbScriptsConfigMap: 

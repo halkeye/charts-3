@@ -104,6 +104,31 @@ entries:
     version: 0.0.2
   matrix-synapse:
   - apiVersion: v2
+    appVersion: v1.60.0
+    created: "2022-06-01T06:46:13.263781422Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: ~11.0.6
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: ~16.5.2
+    description: Deployes the Synapse Matrix Homeserver
+    digest: 5206d017133b08affb2c50adcf2dcd52c18f0cfc47e9c0a00fe7ae93a3f06c72
+    home: https://github.com/matrix-org/synapse
+    icon: https://matrix.org/images/matrix-logo.svg
+    maintainers:
+    - email: 0hlov3@protonmail.com
+      name: 0hlov3
+      url: https://schoenwald.me
+    name: matrix-synapse
+    type: application
+    urls:
+    - https://github.com/Maxxblow/charts/releases/download/matrix-synapse-0.1.5/matrix-synapse-0.1.5.tgz
+    version: 0.1.5
+  - apiVersion: v2
     appVersion: v1.59.1
     created: "2022-05-23T03:58:21.618278257Z"
     dependencies:
@@ -361,4 +386,4 @@ entries:
     urls:
     - https://github.com/Maxxblow/charts/releases/download/yourls-0.0.1/yourls-0.0.1.tgz
     version: 0.0.1
-generated: "2022-05-30T18:52:24.710733268Z"
+generated: "2022-06-01T06:46:13.263824823Z"

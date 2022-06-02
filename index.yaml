@@ -339,6 +339,30 @@ entries:
     urls:
     - https://github.com/Maxxblow/charts/releases/download/vector-element-0.1.2/vector-element-0.1.2.tgz
     version: 0.1.2
+  writefreely:
+  - apiVersion: v2
+    appVersion: 0.12.0
+    created: "2022-06-02T06:39:36.14815564Z"
+    dependencies:
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: ~11.0.9
+    description: WriteFreely is a clean, minimalist publishing platform made for writers.
+      Start a blog, share knowledge within your organization, or build a community
+      around the shared act of writing.
+    digest: af6090858b849b8c297aa89ba67a59c14a95ba79b9802d09f5fd5d84759faa14
+    home: https://github.com/writefreely/writefreely
+    icon: https://camo.githubusercontent.com/4e4760d7cf8313bb68b68c34eb97de424b5dc6129d8233dc64785a6cad376d2b/68747470733a2f2f7772697465667265656c792e6f72672f696d672f7772697465667265656c792e737667
+    maintainers:
+    - email: 0hlov3@protonmail.com
+      name: 0hlov3
+      url: https://schoenwald.me
+    name: writefreely
+    type: application
+    urls:
+    - https://github.com/Maxxblow/charts/releases/download/writefreely-0.1.1/writefreely-0.1.1.tgz
+    version: 0.1.1
   yourls:
   - apiVersion: v2
     appVersion: "1.9"
@@ -386,4 +410,4 @@ entries:
     urls:
     - https://github.com/Maxxblow/charts/releases/download/yourls-0.0.1/yourls-0.0.1.tgz
     version: 0.0.1
-generated: "2022-06-01T06:46:13.263824823Z"
+generated: "2022-06-02T06:39:36.148343453Z"

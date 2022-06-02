@@ -1,0 +1,100 @@
+{{- $fullName := include "writefreely.fullname" .  }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $fullName }}
+  labels:
+    {{- include "writefreely.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "writefreely.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "writefreely.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "writefreely.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          command:
+            - sh
+            - -c
+            - |
+              cat /tmp/config.ini | \
+                sed -e "s/@@supersecurePassword@@/${MYSQL_PASSWORD:-}/" \
+                       > /go/config.ini
+
+              {{- if .Values.writefreely.extraCommands }}
+
+              {{ range .Values.writefreely.extraCommands }}
+              {{ . }}
+              {{- end }}
+              {{- end }}
+
+              cmd/writefreely/writefreely db init
+
+              exec cmd/writefreely/writefreely serve
+
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: writefreely
+              containerPort: {{ .Values.writefreely.server.port }}
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: writefreely
+          readinessProbe:
+            httpGet:
+              path: /
+              port: writefreely
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          env:
+          {{- if .Values.mariadb.enabled }}
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mariadb.auth.existingSecret }}
+                  key: mariadb-password
+          {{- end }}
+          volumeMounts:
+            - name: {{ $fullName }}-config
+              mountPath: /tmp/
+      volumes:
+        - name: {{ $fullName }}-config
+          configMap:
+            name: {{ $fullName }}-config
+            items:
+              - key: config.ini
+                path: "config.ini"
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

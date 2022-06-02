@@ -1,0 +1,24 @@
+apiVersion: v2
+name: writefreely
+description: riteFreely is a clean, minimalist publishing platform made for writers. Start a blog, share knowledge within your organization, or build a community around the shared act of writing.
+icon: https://camo.githubusercontent.com/4e4760d7cf8313bb68b68c34eb97de424b5dc6129d8233dc64785a6cad376d2b/68747470733a2f2f7772697465667265656c792e6f72672f696d672f7772697465667265656c792e737667
+home: https://github.com/writefreely/writefreely
+
+type: application
+
+# Chart Version
+version: 0.0.1
+
+# Privatebin Version
+appVersion: "0.12.0"
+
+maintainers:
+  - name: 0hlov3
+    email: 0hlov3@protonmail.com
+    url: https://schoenwald.me
+
+dependencies:
+  - name: mariadb
+    version: ~11.0.9
+    repository: https://charts.bitnami.com/mariadb
+    condition: mariadb.enabled

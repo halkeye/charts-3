@@ -1,0 +1,118 @@
+{{- $fullName := include "writefreely.fullname" .  }}
+{{- $mariadbHost := include "writefreely.mariadb.host" . }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ $fullName }}-config
+data:
+  config.ini: |
+    [server]
+    hidden_host          = {{ .Values.writefreely.server.hidden_host }}
+    port                 = {{ .Values.writefreely.server.port }}
+    bind                 = {{ .Values.writefreely.server.bind }}
+    tls_cert_path        = {{ .Values.writefreely.server.tls_cert_path }}
+    tls_key_path         = {{ .Values.writefreely.server.tls_key_path }}
+    autocert             = {{ .Values.writefreely.server.autocert }}
+    templates_parent_dir = {{ .Values.writefreely.server.templates_parent_dir }}
+    static_parent_dir    = {{ .Values.writefreely.server.static_parent_dir }}
+    pages_parent_dir     = {{ .Values.writefreely.server.pages_parent_dir }} 
+    keys_parent_dir      = {{ .Values.writefreely.server.keys_parent_dir }} 
+    hash_seed            = {{ .Values.writefreely.server.hash_seed }}
+    gopher_port          = {{ .Values.writefreely.server.gopher_port }}
+    [database]
+    {{- if .Values.mariadb.enabled }}
+    type     = mysql
+    username = {{ .Values.mariadb.auth.username }}
+    password = {{ .Values.mariadb.auth.password }}
+    database = {{ .Values.mariadb.auth.database }}
+    host     = {{ $mariadbHost }}
+    port     = 3306
+    tls      = false
+    {{- else }}
+    type     = sqlite3
+    filename = {{ .Values.writefreely.database.filename }}
+    {{- end }}
+    [app]
+    site_name             = {{ .Values.writefreely.app.site_name }}
+    site_description      = {{ .Values.writefreely.app.site_description }}
+    host                  = {{ .Values.writefreely.app.host }}
+    theme                 = {{ .Values.writefreely.app.theme }}
+    editor                = {{ .Values.writefreely.app.editor }}
+    disable_js            = {{ .Values.writefreely.app.disable_js }}
+    webfonts              = {{ .Values.writefreely.app.webfonts }}
+    landing               = {{ .Values.writefreely.app.landing }}
+    simple_nav            = {{ .Values.writefreely.app.simple_nav }}
+    wf_modesty            = {{ .Values.writefreely.app.wf_modesty }}
+    chorus                = {{ .Values.writefreely.app.chorus }}
+    forest                = {{ .Values.writefreely.app.forest }}
+    disable_drafts        = {{ .Values.writefreely.app.disable_drafts }}
+    single_user           = {{ .Values.writefreely.app.single_user }}
+    open_registration     = {{ .Values.writefreely.app.open_registration }}
+    open_deletion         = {{ .Values.writefreely.app.open_deletion }}
+    min_username_len      = {{ .Values.writefreely.app.min_username_len }}
+    max_blogs             = {{ .Values.writefreely.app.max_blogs }}
+    federation            = {{ .Values.writefreely.app.federation }}
+    public_stats          = {{ .Values.writefreely.app.public_stats }}
+    monetization          = {{ .Values.writefreely.app.monetization }}
+    notes_only            = {{ .Values.writefreely.app.notes_only }}
+    private               = {{ .Values.writefreely.app.private }}
+    local_timeline        = {{ .Values.writefreely.app.local_timeline }}
+    user_invites          = {{ .Values.writefreely.app.user_invites }}
+    default_visibility    = {{ .Values.writefreely.app.default_visibility }}
+    update_checks         = {{ .Values.writefreely.app.update_checks }}
+    disable_password_auth = {{ .Values.writefreely.app.disable_password_auth }}
+    {{- if .Values.writefreely.oauthSlack.enabled }}
+    [oauth.slack]
+    client_id          = {{ .Values.writefreely.oauthSlack.client_id }}
+    client_secret      = {{ .Values.writefreely.oauthSlack.client_secret }}
+    team_id            = {{ .Values.writefreely.oauthSlack.team_id }}
+    callback_proxy     = {{ .Values.writefreely.oauthSlack.callback_proxy }}
+    callback_proxy_api = {{ .Values.writefreely.oauthSlack.callback_proxy_api }}
+    {{- end }}
+    {{- if .Values.writefreely.oauthWriteas.enabled }}
+    [oauth.writeas]
+    client_id          = {{ .Values.writefreely.oauthWriteas.client_id }}
+    client_secret      = {{ .Values.writefreely.oauthWriteas.client_secret }}
+    auth_location      = {{ .Values.writefreely.oauthWriteas.auth_location }}
+    token_location     = {{ .Values.writefreely.oauthWriteas.token_location }}
+    inspect_location   = {{ .Values.writefreely.oauthWriteas.inspect_location }}
+    callback_proxy     = {{ .Values.writefreely.oauthWriteas.callback_proxy }}
+    callback_proxy_api = {{ .Values.writefreely.oauthWriteas.callback_proxy_api }}
+    {{- end }}
+    {{- if .Values.writefreely.oauthGitlab.enabled }}
+    [oauth.gitlab]
+    client_id          = {{ .Values.writefreely.oauthGitlab.client_id }}
+    client_secret      = {{ .Values.writefreely.oauthGitlab.client_secret }}
+    host               = {{ .Values.writefreely.oauthGitlab.host }}
+    display_name       = {{ .Values.writefreely.oauthGitlab.display_name }}
+    callback_proxy     = {{ .Values.writefreely.oauthGitlab.callback_proxy }}
+    callback_proxy_api = {{ .Values.writefreely.oauthGitlab.callback_proxy_api }}
+    {{- end }}
+    {{- if .Values.writefreely.oauthGitea.enabled }}
+    [oauth.gitea]
+    client_id          = {{ .Values.writefreely.oauthGitea.client_id }}
+    client_secret      = {{ .Values.writefreely.oauthGitea.client_secret }}
+    host               = {{ .Values.writefreely.oauthGitea.host }}
+    display_name       = {{ .Values.writefreely.oauthGitea.display_name }}
+    callback_proxy     = {{ .Values.writefreely.oauthGitea.callback_proxy }}
+    callback_proxy_api = {{ .Values.writefreely.oauthGitea.callback_proxy_api }}
+    {{- end }}
+    {{- if .Values.writefreely.oauthGeneric.enabled }}
+    [oauth.generic]
+    client_id          = {{ .Values.writefreely.oauthGeneric.client_id }}
+    client_secret      = {{ .Values.writefreely.oauthGeneric.client_secret }}
+    host               = {{ .Values.writefreely.oauthGeneric.host }}
+    display_name       = {{ .Values.writefreely.oauthGeneric.display_name }}
+    callback_proxy     = {{ .Values.writefreely.oauthGeneric.callback_proxy }}
+    callback_proxy_api = {{ .Values.writefreely.oauthGeneric.callback_proxy_api }}
+    token_endpoint     = {{ .Values.writefreely.oauthGeneric.token_endpoint }}
+    inspect_endpoint   = {{ .Values.writefreely.oauthGeneric.inspect_endpoint }}
+    auth_endpoint      = {{ .Values.writefreely.oauthGeneric.auth_endpoint }}
+    scope              = {{ .Values.writefreely.oauthGeneric.scope }}
+    allow_disconnect   = {{ .Values.writefreely.oauthGeneric.allow_disconnect }}
+    map_user_id        = {{ .Values.writefreely.oauthGeneric.map_user_id }}
+    map_username       = {{ .Values.writefreely.oauthGeneric.map_username }}
+    map_display_name   = {{ .Values.writefreely.oauthGeneric.map_display_name }}
+    map_email          = {{ .Values.writefreely.oauthGeneric.map_email }}
+    {{- end }}

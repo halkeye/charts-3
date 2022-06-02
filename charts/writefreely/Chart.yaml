@@ -7,7 +7,7 @@ home: https://github.com/writefreely/writefreely
 type: application
 
 # Chart Version
-version: 0.1.0
+version: "0.1.1"
 
 # Privatebin Version
 appVersion: "0.12.0"

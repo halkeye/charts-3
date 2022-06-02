@@ -20,5 +20,5 @@ maintainers:
 dependencies:
   - name: mariadb
     version: ~11.0.9
-    repository: https://charts.bitnami.com/mariadb
+    repository: https://charts.bitnami.com/bitnami
     condition: mariadb.enabled

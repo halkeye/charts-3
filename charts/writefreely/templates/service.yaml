@@ -8,8 +8,8 @@ spec:
   type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.service.port }}
-      targetPort: http
+      targetPort: writefreely
       protocol: TCP
-      name: http
+      name: writefreely
   selector:
     {{- include "writefreely.selectorLabels" . | nindent 4 }}

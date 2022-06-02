@@ -1,7 +1,9 @@
+{{- $fullName := include "writefreely.fullname" .  }}
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "writefreely.fullname" . }}
+  name: {{ $fullName }}
   labels:
     {{- include "writefreely.labels" . | nindent 4 }}
 spec:
@@ -29,24 +31,61 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
         - name: {{ .Chart.Name }}
+          command:
+            - sh
+            - -c
+            - |
+              cat /tmp/config.ini | \
+                sed -e "s/@@supersecurePassword@@/${MYSQL_PASSWORD:-}/" \
+                       > /go/config.ini
+
+              {{- if .Values.writefreely.extraCommands }}
+
+              {{ range .Values.writefreely.extraCommands }}
+              {{ . }}
+              {{- end }}
+              {{- end }}
+
+              cmd/writefreely/writefreely db init
+
+              exec cmd/writefreely/writefreely serve
+
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - name: http
-              containerPort: 80
+            - name: writefreely
+              containerPort: {{ .Values.writefreely.server.port }}
               protocol: TCP
           livenessProbe:
             httpGet:
               path: /
-              port: http
+              port: writefreely
           readinessProbe:
             httpGet:
               path: /
-              port: http
+              port: writefreely
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          env:
+          {{- if .Values.mariadb.enabled }}
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mariadb.auth.existingSecret }}
+                  key: mariadb-password
+          {{- end }}
+          volumeMounts:
+            - name: {{ $fullName }}-config
+              mountPath: /tmp/
+      volumes:
+        - name: {{ $fullName }}-config
+          configMap:
+            name: {{ $fullName }}-config
+            items:
+              - key: config.ini
+                path: "config.ini"
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

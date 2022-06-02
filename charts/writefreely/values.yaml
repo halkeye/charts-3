@@ -10,31 +10,123 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
-imagePullSecrets: []
-nameOverride: ""
-fullnameOverride: ""
+writefreely:
+  server:
+    hidden_host:
+    port:  8080
+    bind:  0.0.0.0
+    tls_cert_path: 
+    tls_key_path: 
+    autocert:  false
+    templates_parent_dir: 
+    static_parent_dir: 
+    pages_parent_dir: 
+    keys_parent_dir: 
+    hash_seed: 
+    gopher_port:  0
+  database:
+    type: sqlite3
+    filename: writefreely.sqlite
+    username: writefreely
+    password: writefreely
+    database: writefreely
+    host: localhost
+    port: 3306
+    tls: false
+  app:
+    site_name: blog.example.com
+    site_description: "My new Blog"
+    host: https://blog.example.com # or http://blog.example.com
+    theme: write
+    editor: 
+    disable_js: false
+    webfonts: true
+    landing: 
+    simple_nav: false
+    wf_modesty: false
+    chorus: false
+    forest: false
+    disable_drafts: false
+    single_user: false
+    open_registration: true
+    open_deletion: false
+    min_username_len: 3
+    max_blogs: 1
+    federation: true
+    public_stats: true
+    monetization: false
+    notes_only: false
+    private: false
+    local_timeline: false
+    user_invites: 
+    default_visibility: 
+    update_checks: false
+    disable_password_auth: false
+  oauthSlack:
+    enabled: false
+    client_id:
+    client_secret:
+    team_id:
+    callback_proxy:
+    callback_proxy_api:
+  oauthWriteas:
+    enabled: false
+    client_id:
+    client_secret:
+    auth_location:
+    token_location:
+    inspect_location:
+    callback_proxy:
+    callback_proxy_api:
+  oauthGitlab:
+    enabled: false
+    client_id:
+    client_secret:
+    host:
+    display_name:
+    callback_proxy:
+    callback_proxy_api:
+  oauthGitea:
+    enabled: false
+    client_id:
+    client_secret:
+    host:
+    display_name:
+    callback_proxy:
+    callback_proxy_api:
+  oauthGeneric:
+    enabled: false
+    client_id:
+    client_secret:
+    host:
+    display_name:
+    callback_proxy:
+    callback_proxy_api:
+    token_endpoint:
+    inspect_endpoint:
+    auth_endpoint:
+    scope:
+    allow_disconnect: false
+    map_user_id:
+    map_username:
+    map_display_name:
+    map_email:
 
-serviceAccount:
-  # Specifies whether a service account should be created
-  create: true
-  # Annotations to add to the service account
-  annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
-  name: ""
-
-podAnnotations: {}
-
-podSecurityContext: {}
-  # fsGroup: 2000
-
-securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
+mariadb:
+  enabled: true
+  auth:
+    rootPassword: supersecurePassword # change this `openssl rand -hex 16`
+    database: writefreely
+    username: writefreely
+    password: "@@supersecurePassword@@" # change this `openssl rand -hex 16`
+    replicationUser: replicator
+    replicationPassword: supersecurePassword # change this `openssl rand -hex 16``
+    existingSecret:  # Use existing secret for password details (auth.rootPassword, auth.password, auth.replicationPassword will be ignored and picked up from this secret). The secret has to contain the keys mariadb-root-password, mariadb-replication-password and mariadb-password
+  primary:
+    persistence:
+      enabled: true
+      size: 1Gi
+  # initdbScriptsConfigMap: "mariadb-schema"
 
 service:
   type: ClusterIP
@@ -81,14 +173,12 @@ tolerations: []
 
 affinity: {}
 
-mariadb:
-  enabled: true
-  auth:
-    rootPassword:
-    database:
-    username: writefreely
-    password:
-    replicationUser: replicator
-    replicationPassword:
-    existingSecret:  # Use existing secret for password details (auth.rootPassword, auth.password, auth.replicationPassword will be ignored and picked up from this secret). The secret has to contain the keys mariadb-root-password, mariadb-replication-password and mariadb-password
-  initdbScriptsConfigMap: 
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""

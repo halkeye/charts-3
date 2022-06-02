@@ -60,3 +60,22 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+Create a default fully qualified app name.
+We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
+*/}}
+{{- define "writefreely.mariadb.fullname" -}}
+{{- printf "%s-%s" .Release.Name "mariadb" | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
+
+{{/*
+Set mariadb host
+*/}}
+{{- define "writefreely.mariadb.host" -}}
+{{- if .Values.mariadb.enabled -}}
+{{- template "writefreely.mariadb.fullname" . -}}
+# {{- else -}}
+# {{ required "A valid externalPostgresql.host is required" .Values.externalPostgresql.host }}
+{{- end -}}
+{{- end -}}

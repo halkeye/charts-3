@@ -3,15 +3,15 @@ kind: ConfigMap
 metadata:
   name: {{ include "gotosocial.fullname" . }}
 data:
-  config.yaml: |    
+  config.yaml: |
     ###########################
     ##### GENERAL CONFIG ######
     ###########################
     log-level: {{ .Values.gotosocial.config.logLevel | default "info" }}
     log-db-queries: {{ .Values.gotosocial.config.logDBQueries | default false }}
     application-name: {{ .Values.gotosocial.config.applicationName | default "gotosocial" }}
-    host: {{ .Values.gotosocial.config.host }}
-    account-domain: {{ .Values.gotosocial.config.accountDomain }}
+    host: {{ .Values.gotosocial.config.host | default "localhost"}}
+    account-domain: {{ .Values.gotosocial.config.accountDomain | default "" }}
     protocol: {{ .Values.gotosocial.config.protocol | default "https" }}
     bind-address: {{ .Values.gotosocial.config.protocol | default "0.0.0.0" }}
     port: {{ .Values.service.port | default 8080}}
@@ -20,18 +20,10 @@ data:
     {{- if .Values.gotosocial.config.trustedProxies -}}
       {{ .Values.gotosocial.config.trustedProxies | toYaml | nindent 6 }}
     {{- end }}
-    #{{- if eq .Values.gotosocial.config.db.type "sqlite" }}
     #############################
     ###### DATABASE CONFIG ######
+    ###### Is set via ENV  ######
     #############################
-    #db-type: {{ .Values.gotosocial.config.db.type | default "sqlite" }}
-    #db-address: {{ .Values.gotosocial.config.db.address | default "/gotosocial/storage/sqlite.db" }} 
-    #db-user: {{ .Values.gotosocial.config.db.user | default "gotosocial" }}
-    #db-password: {{ .Values.gotosocial.config.db.password }}
-    #db-database: {{ .Values.gotosocial.config.db.database | default "gotosocial" }}
-    #db-tls-mode: {{ .Values.gotosocial.config.db.tlsMode | default "disable" }}
-    #db-tls-ca-cert: {{ .Values.gotosocial.config.db.tlsCaCert | default "" }}
-    #{{- end }}
     ######################
     ##### WEB CONFIG #####
     ######################
@@ -98,3 +90,7 @@ data:
     syslog-enabled: {{ .Values.gotosocial.config.syslog.enabled | default false }}
     syslog-protocol: {{ .Values.gotosocial.config.syslog.protocol | default "udp" }}
     syslog-address: {{ .Values.gotosocial.config.syslog.address | default "localhost:514" }}
+    #############################
+    ##### ADVANCED SETTINGS #####
+    #############################
+    advanced-cookies-samesite: {{ .Values.gotosocial.config.advanced.cookiesSamesite | default "lax" }}

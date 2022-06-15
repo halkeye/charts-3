@@ -107,6 +107,8 @@ gotosocial:
       enabled: ""
       protocol: ""
       address:  ""
+    advanced:
+      cookiesSamesite: ""
 
 postgresql:
   enabled: false

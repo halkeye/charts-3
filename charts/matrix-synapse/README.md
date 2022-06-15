@@ -82,5 +82,5 @@ helm upgrade matrix-synapse matrix-synapse
 kubectl delete pod matrix-synapse-redis-master-0   
 ```
 
-## This is a FORK
+## This is a FORK of
  - (Matrix Synapse)[https://gitlab.com/ananace/charts/-/blob/master/charts/matrix-synapse/README.md]

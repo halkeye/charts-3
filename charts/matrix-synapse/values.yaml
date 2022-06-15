@@ -530,9 +530,6 @@ workers:
       - "/_matrix/client/(api/v1|r0|v3|unstable)/keys/changes"
       - "/_matrix/client/versions"
       - "/_matrix/client/(api/v1|r0|v3|unstable)/voip/turnServer"
-      - "/_matrix/client/(api/v1|r0|v3|unstable)/joined_groups"
-      - "/_matrix/client/(api/v1|r0|v3|unstable)/publicised_groups"
-      - "/_matrix/client/(api/v1|r0|v3|unstable)/publicised_groups/"
       - "/_matrix/client/(api/v1|r0|v3|unstable)/login"
       - "/_matrix/client/(r0|v3|unstable)/register"
       - "/_matrix/client/(r0|v3|unstable)/auth/.*/fallback/web"
@@ -562,7 +559,6 @@ workers:
       - "/_matrix/federation/v1/exchange_third_party_invite/"
       - "/_matrix/federation/v1/user/devices/"
       - "/_matrix/federation/v1/send/"
-      - "/_matrix/federation/v1/get_groups_publicised"
       - "/_matrix/key/v2/query"
 
   ## To separate the generic worker into specific concerns - for example federation transaction receiving;

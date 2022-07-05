@@ -6,9 +6,9 @@ home: https://github.com/superseriousbusiness/gotosocial
 
 type: application
 # Chart Version
-version: "0.1.5"
+version: "0.1.6"
 # gotosocial version
-appVersion: "0.3.5"
+appVersion: "0.3.7"
 
 maintainers:
   - name: 0hlov3

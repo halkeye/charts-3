@@ -127,6 +127,9 @@ mariadb:
       enabled: true
       size: 1Gi
   # initdbScriptsConfigMap: "mariadb-schema"
+  volumePermissions:
+    enabled: false
+
 
 service:
   type: ClusterIP

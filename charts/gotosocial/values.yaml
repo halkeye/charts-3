@@ -123,6 +123,8 @@ postgresql:
       # existingClaim:
       # storageClass:
       size: 10Gi
+  volumePermissions:
+    enabled: false
 
 externalPostgresql:
   enabled: false

@@ -3,6 +3,27 @@ entries:
   gotosocial:
   - apiVersion: v2
     appVersion: 0.3.7
+    created: "2022-07-20T07:50:29.082593468Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: ~11.0.06
+    description: A Helm chart for Kubernetes
+    digest: 940dd611a0229b271133d36e54ea4343d5cb0e16ed0a3c2ded004cb0919656d9
+    home: https://github.com/superseriousbusiness/gotosocial
+    icon: https://docs.gotosocial.org/en/latest/assets/sloth.png
+    maintainers:
+    - email: 0hlov3@protonmail.com
+      name: 0hlov3
+      url: https://schoenwald.me
+    name: gotosocial
+    type: application
+    urls:
+    - https://github.com/Maxxblow/charts/releases/download/gotosocial-0.1.7/gotosocial-0.1.7.tgz
+    version: 0.1.7
+  - apiVersion: v2
+    appVersion: 0.3.7
     created: "2022-07-05T19:42:49.595307134Z"
     dependencies:
     - condition: postgresql.enabled
@@ -476,6 +497,29 @@ entries:
   writefreely:
   - apiVersion: v2
     appVersion: 0.12.0
+    created: "2022-07-20T07:50:29.245049635Z"
+    dependencies:
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: ~11.0.9
+    description: WriteFreely is a clean, minimalist publishing platform made for writers.
+      Start a blog, share knowledge within your organization, or build a community
+      around the shared act of writing.
+    digest: fa74ec3f9022c40ed6c9d2d30991d4134abbc2d599b8d2a1561ac370d52efd63
+    home: https://github.com/writefreely/writefreely
+    icon: https://camo.githubusercontent.com/4e4760d7cf8313bb68b68c34eb97de424b5dc6129d8233dc64785a6cad376d2b/68747470733a2f2f7772697465667265656c792e6f72672f696d672f7772697465667265656c792e737667
+    maintainers:
+    - email: 0hlov3@protonmail.com
+      name: 0hlov3
+      url: https://schoenwald.me
+    name: writefreely
+    type: application
+    urls:
+    - https://github.com/Maxxblow/charts/releases/download/writefreely-0.1.2/writefreely-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 0.12.0
     created: "2022-06-02T06:39:36.14815564Z"
     dependencies:
     - condition: mariadb.enabled
@@ -544,4 +588,4 @@ entries:
     urls:
     - https://github.com/Maxxblow/charts/releases/download/yourls-0.0.1/yourls-0.0.1.tgz
     version: 0.0.1
-generated: "2022-07-06T21:46:52.123880508Z"
+generated: "2022-07-20T07:50:29.245199743Z"

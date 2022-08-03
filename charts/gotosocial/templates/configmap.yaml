@@ -30,6 +30,11 @@ data:
     web-template-base-dir: {{ .Values.gotosocial.config.web.templateBaseDir | default "./web/template/" }}
     web-asset-base-dir: {{ .Values.gotosocial.config.web.assetBaseDir | default "./web/assets/" }}
     ###########################
+    ##### INSTANCE CONFIG #####
+    ###########################
+    instance-expose-peers: {{ .Values.gotosocial.config.instance.instanceExposePeers | default false }}
+    instance-expose-suspended: {{ .Values.gotosocial.config.instance.instanceExposeSuspended | default false }}
+    ###########################
     ##### ACCOUNTS CONFIG #####
     ###########################
     accounts-registration-open:  {{ .Values.gotosocial.config.accounts.registrationOpen | default true }}
@@ -38,16 +43,22 @@ data:
     ########################
     ##### MEDIA CONFIG #####
     ########################
-    media-image-max-size: {{ .Values.gotosocial.config.media.imageMaxSize | default 2097152 }}
-    media-video-max-size: {{ .Values.gotosocial.config.media.videoMaxSize | default 10485760 }}
+    media-image-max-size: {{ .Values.gotosocial.config.media.imageMaxSize | default 10485760 }}
+    media-video-max-size: {{ .Values.gotosocial.config.media.videoMaxSize | default 41943040 }}
     media-description-min-chars: {{ .Values.gotosocial.config.media.descriptionMinChars | default 0 }}
     media-description-max-chars: {{ .Values.gotosocial.config.media.descriptionMaxChars | default 500 }}
     media-remote-cache-days: {{ .Values.gotosocial.config.media.descriptionMaxChars | default 30 }}
     ##########################
     ##### STORAGE CONFIG #####
     ##########################
-    storage-backend: {{ .Values.gotosocial.config.media.descriptionMaxChars | default "local" }}
-    storage-local-base-path: "/gotosocial/storage"
+    storage-backend: {{ .Values.gotosocial.config.storage.backend | default "local" }}
+    storage-local-base-path: {{ .Values.gotosocial.config.storage.localBasePath | default "/gotosocial/storage" }}
+    {{- if .Values.gotosocial.config.storage.s3.enabled }}
+    storage-s3-endpoint: {{ .Values.gotosocial.config.storage.s3.s3Endpoint | default "local" }}
+    storage-s3-access-key: {{ .Values.gotosocial.config.storage.s3.s3AccessKey | default "local" }}
+    storage-s3-secret-key: {{ .Values.gotosocial.config.storage.s3.s3SecretKey | default "local" }}
+    storage-s3-bucket: {{ .Values.gotosocial.config.storage.s3.s3Bucket | default "local" }}
+    {{- end }}
     ###########################
     ##### STATUSES CONFIG #####
     ###########################

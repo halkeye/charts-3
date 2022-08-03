@@ -2,6 +2,27 @@ apiVersion: v1
 entries:
   gotosocial:
   - apiVersion: v2
+    appVersion: 0.3.8
+    created: "2022-08-03T23:23:33.948010572Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: ~11.0.06
+    description: A Helm chart for Kubernetes
+    digest: 3ee41a9331e813ff7c0d367ab4b51e0cfd67acb875d5bfd7fa8a7c8eb9b06d26
+    home: https://github.com/superseriousbusiness/gotosocial
+    icon: https://docs.gotosocial.org/en/latest/assets/sloth.png
+    maintainers:
+    - email: 0hlov3@protonmail.com
+      name: 0hlov3
+      url: https://schoenwald.me
+    name: gotosocial
+    type: application
+    urls:
+    - https://github.com/Maxxblow/charts/releases/download/gotosocial-0.1.8/gotosocial-0.1.8.tgz
+    version: 0.1.8
+  - apiVersion: v2
     appVersion: 0.3.7
     created: "2022-07-20T07:50:29.082593468Z"
     dependencies:
@@ -588,4 +609,4 @@ entries:
     urls:
     - https://github.com/Maxxblow/charts/releases/download/yourls-0.0.1/yourls-0.0.1.tgz
     version: 0.0.1
-generated: "2022-07-20T07:50:29.245199743Z"
+generated: "2022-08-03T23:23:33.948332893Z"

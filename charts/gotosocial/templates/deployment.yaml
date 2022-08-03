@@ -45,10 +45,13 @@ spec:
             httpGet:
               path: /
               port: gotosocial
+            initialDelaySeconds: 15
           readinessProbe:
             httpGet:
               path: /
               port: gotosocial
+            failureThreshold: 5
+            initialDelaySeconds: 10
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           env:

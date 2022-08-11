@@ -389,6 +389,21 @@ entries:
     version: 0.1.2
   matrix-synapse-admin:
   - apiVersion: v2
+    appVersion: 1.4.0
+    created: "2022-08-11T20:16:16.742792344Z"
+    description: Deployes the Synapse Matrix Admin
+    digest: 993f599f96ca6ad8295e425dd6241840918d1c3e25f51aecd9891ba79264bb98
+    home: https://github.com/Awesome-Technologies/synapse-admin
+    maintainers:
+    - email: 0hlov3@protonmail.com
+      name: 0hlov3
+      url: https://schoenwald.me
+    name: matrix-synapse-admin
+    type: application
+    urls:
+    - https://github.com/Maxxblow/charts/releases/download/matrix-synapse-admin-0.0.4/matrix-synapse-admin-0.0.4.tgz
+    version: 0.0.4
+  - apiVersion: v2
     appVersion: 0.8.5
     created: "2022-04-29T22:19:26.474344351Z"
     description: Deployes the Synapse Matrix Admin
@@ -471,6 +486,23 @@ entries:
     - https://github.com/Maxxblow/charts/releases/download/pinafore-0.0.4/pinafore-0.0.4.tgz
     version: 0.0.4
   privatebin:
+  - apiVersion: v2
+    appVersion: 1.4.0
+    created: "2022-08-11T20:16:17.034246454Z"
+    description: PrivateBin is a minimalist, open source online pastebin where the
+      server has zero knowledge of pasted data.
+    digest: 0d333401b69a2b3a3ef2edbe09ae8e52dd419328bc477ba78a17990ff6e1c791
+    home: https://github.com/PrivateBin/PrivateBin
+    icon: https://privatebin.info/img/logo.png
+    maintainers:
+    - email: 0hlov3@protonmail.com
+      name: 0hlov3
+      url: https://schoenwald.me
+    name: privatebin
+    type: application
+    urls:
+    - https://github.com/Maxxblow/charts/releases/download/privatebin-0.1.4/privatebin-0.1.4.tgz
+    version: 0.1.4
   - apiVersion: v2
     appVersion: 1.4.0
     created: "2022-04-29T22:19:26.711138546Z"
@@ -634,4 +666,4 @@ entries:
     urls:
     - https://github.com/Maxxblow/charts/releases/download/yourls-0.0.1/yourls-0.0.1.tgz
     version: 0.0.1
-generated: "2022-08-03T23:38:36.88932358Z"
+generated: "2022-08-11T20:16:17.034316855Z"

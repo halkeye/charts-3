@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: nitter
+data:
+  nitter.conf: |-
+    [Server]
+    address = {{ .Values.nitter.server.address }}
+    port = {{ .Values.nitter.server.port }}
+    https = {{ .Values.nitter.server.https }}  # disable to enable cookies when not using https
+    httpMaxConnections = {{ .Values.nitter.server.httpMaxConnections }}
+    staticDir = {{ .Values.nitter.server.staticDir }}
+    title = {{ .Values.nitter.server.title }}
+    hostname = {{ .Values.nitter.server.hostname }}
+    
+    [Cache]
+    listMinutes = {{ .Values.nitter.cache.listMinutes }}  # how long to cache list info (not the tweets, so keep it high)
+    rssMinutes = {{ .Values.nitter.cache.rssMinutes }}  # how long to cache rss queries
+    redisHost = "localhost"  # Change to "nitter-redis" if using docker-compose
+    redisPort = 6379
+    redisPassword = ""
+    redisConnections = {{ .Values.nitter.cache.redisConnections }}  # connection pool size
+    redisMaxConnections = {{ .Values.nitter.cache.redisMaxConnections }}
+    # max, new connections are opened when none are available, but if the pool size
+    # goes above this, they're closed when released. don't worry about this unless
+    # you receive tons of requests per second
+    
+    [Config]
+    hmacKey = {{ .Values.nitter.config.hmacKey }}  # random key for cryptographic signing of video urls
+    base64Media = {{ .Values.nitter.config.base64Media }}   # use base64 encoding for proxied media urls
+    enableRSS = {{ .Values.nitter.config.enableRSS }}   # set this to false to disable RSS feeds
+    enableDebug = {{ .Values.nitter.config.enableDebug }}   # enable request logs and debug endpoints
+    proxy = {{ .Values.nitter.config.proxy }}  # http/https url, SOCKS proxies are not supported
+    proxyAuth = {{ .Values.nitter.config.proxyAuth }} 
+    tokenCount = {{ .Values.nitter.config.tokenCount }} 
+    # minimum amount of usable tokens. tokens are used to authorize API requests,
+    # but they expire after ~1 hour, and have a limit of 187 requests.
+    # the limit gets reset every 15 minutes, and the pool is filled up so there's
+    # always at least $tokenCount usable tokens. again, only increase this if
+    # you receive major bursts all the time
+    
+    # Change default preferences here, see src/prefs_impl.nim for a complete list
+    [Preferences]
+    theme = {{ .Values.nitter.preferences.theme }} 
+    replaceTwitter = {{ .Values.nitter.preferences.replaceTwitter }} 
+    replaceYouTube = {{ .Values.nitter.preferences.replaceYouTube }} 
+    replaceReddit = {{ .Values.nitter.preferences.replaceReddit }} 
+    replaceInstagram = {{ .Values.nitter.preferences.replaceInstagram }} 
+    proxyVideos = {{ .Values.nitter.preferences.proxyVideos }} 
+    hlsPlayback = {{ .Values.nitter.preferences.hlsPlayback }} 
+    infiniteScroll = {{ .Values.nitter.preferences.infiniteScroll }} 

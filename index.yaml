@@ -172,6 +172,22 @@ entries:
   librespeed:
   - apiVersion: v2
     appVersion: 5.2.5
+    created: "2022-08-29T22:11:00.273006178Z"
+    description: Deployes the librespeed Container in Kubernetes
+    digest: 24aa195b9070df959e7a232d805e4769bf782c7a4fc0ff90eac7d647b6503386
+    home: https://github.com/librespeed/speedtest
+    icon: https://github.com/librespeed/speedtest/raw/master/.logo/logo3.png?raw=true
+    maintainers:
+    - email: 0hlov3@protonmail.com
+      name: 0hlov3
+      url: https://schoenwald.me
+    name: librespeed
+    type: application
+    urls:
+    - https://github.com/Maxxblow/charts/releases/download/librespeed-0.2.2/librespeed-0.2.2.tgz
+    version: 0.2.2
+  - apiVersion: v2
+    appVersion: 5.2.5
     created: "2022-04-29T22:19:26.210154975Z"
     description: Deployes the librespeed Container in Kubernetes
     digest: be0b32a825e068fb11da279797a51e070eb95ddb9f30921832ee17abeda7d68f
@@ -387,7 +403,47 @@ entries:
     urls:
     - https://github.com/Maxxblow/charts/releases/download/matrix-synapse-0.1.2/matrix-synapse-0.1.2.tgz
     version: 0.1.2
+  - apiVersion: v2
+    appVersion: v1.65.0
+    created: "2022-08-29T22:11:00.433082529Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: ~11.0.6
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: ~16.5.2
+    description: Deployes the Synapse Matrix Homeserver
+    digest: 892dde8e8f26f72236ddc0c3e427309ac5e84e3d3791cbca1240deb4bda3e7d3
+    home: https://github.com/matrix-org/synapse
+    icon: https://matrix.org/images/matrix-logo.svg
+    maintainers:
+    - email: 0hlov3@protonmail.com
+      name: 0hlov3
+      url: https://schoenwald.me
+    name: matrix-synapse
+    type: application
+    urls:
+    - https://github.com/Maxxblow/charts/releases/download/matrix-synapse-0.1.1/matrix-synapse-0.1.1.tgz
+    version: 0.1.1
   matrix-synapse-admin:
+  - apiVersion: v2
+    appVersion: 0.8.5
+    created: "2022-08-29T22:11:00.5732018Z"
+    description: Deployes the Synapse Matrix Admin
+    digest: d9a1df12de727195b2308d353acb3c071a36e42f6e7d44bf9dfff9c8ca9cc279
+    home: https://github.com/Awesome-Technologies/synapse-admin
+    maintainers:
+    - email: 0hlov3@protonmail.com
+      name: 0hlov3
+      url: https://schoenwald.me
+    name: matrix-synapse-admin
+    type: application
+    urls:
+    - https://github.com/Maxxblow/charts/releases/download/matrix-synapse-admin-0.1.4/matrix-synapse-admin-0.1.4.tgz
+    version: 0.1.4
   - apiVersion: v2
     appVersion: 1.4.0
     created: "2022-08-11T20:16:16.742792344Z"
@@ -434,6 +490,23 @@ entries:
     - https://github.com/Maxxblow/charts/releases/download/matrix-synapse-admin-0.0.2/matrix-synapse-admin-0.0.2.tgz
     version: 0.0.2
   pinafore:
+  - apiVersion: v2
+    appVersion: v2.2.1
+    created: "2022-08-29T22:11:00.716711518Z"
+    description: Pinafore is an an alternative web client for Mastodon, focused on
+      speed and simplicity.
+    digest: 0e2347b12285bfcd5e8690ceabafc73baf2cc045ee17e409b7f4a0e772f8ae3a
+    home: https://github.com/nolanlawson/pinafore
+    icon: https://raw.githubusercontent.com/nolanlawson/pinafore/master/src/static/sailboat-icon.svg
+    maintainers:
+    - email: 0hlov3@protonmail.com
+      name: 0hlov3
+      url: https://schoenwald.me
+    name: pinafore
+    type: application
+    urls:
+    - https://github.com/Maxxblow/charts/releases/download/pinafore-0.1.6/pinafore-0.1.6.tgz
+    version: 0.1.6
   - apiVersion: v2
     appVersion: v2.2.1
     created: "2022-05-23T04:16:44.480480508Z"
@@ -521,6 +594,23 @@ entries:
     - https://github.com/Maxxblow/charts/releases/download/privatebin-0.1.3/privatebin-0.1.3.tgz
     version: 0.1.3
   vector-element:
+  - apiVersion: v2
+    appVersion: v1.11.3
+    created: "2022-08-29T22:11:00.918932362Z"
+    description: 'Element (formerly known as Vector and Riot) is a Matrix web client
+      built using the Matrix React SDK. '
+    digest: 26365c71ba407eda100238737c1a3a87d269dc01c910ca24285078d45f3def27
+    home: https://github.com/vector-im/element-web/
+    icon: https://element.io/images/element-logo.svg
+    maintainers:
+    - email: 0hlov3@protonmail.com
+      name: 0hlov3
+      url: https://schoenwald.me
+    name: vector-element
+    type: application
+    urls:
+    - https://github.com/Maxxblow/charts/releases/download/vector-element-0.1.5/vector-element-0.1.5.tgz
+    version: 0.1.5
   - apiVersion: v2
     appVersion: v1.11.0
     created: "2022-07-06T21:46:52.123705709Z"
@@ -621,6 +711,29 @@ entries:
     version: 0.1.1
   yourls:
   - apiVersion: v2
+    appVersion: 1.9.1
+    created: "2022-08-29T22:11:01.100406614Z"
+    dependencies:
+    - condition: mysql.enabled
+      name: mysql
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - yourls-database
+      version: ^8.9.6
+    description: A Helm chart to deploy yourls on your Kubernetes Cluster
+    digest: a950042a96295dc4355a8c79ce41430f539c61f6bcb3840a36cbddfc39fecd08
+    home: https://yourls.org
+    icon: https://yourls.org/images/yourls-logo.svg
+    maintainers:
+    - email: 0hlov3@protonmail.com
+      name: 0hlov3
+      url: https://schoenwald.me
+    name: yourls
+    type: application
+    urls:
+    - https://github.com/Maxxblow/charts/releases/download/yourls-0.1.0/yourls-0.1.0.tgz
+    version: 0.1.0
+  - apiVersion: v2
     appVersion: "1.9"
     created: "2022-05-01T21:12:02.428355545Z"
     dependencies:
@@ -666,4 +779,4 @@ entries:
     urls:
     - https://github.com/Maxxblow/charts/releases/download/yourls-0.0.1/yourls-0.0.1.tgz
     version: 0.0.1
-generated: "2022-08-11T20:16:17.034316855Z"
+generated: "2022-08-29T22:11:01.100473015Z"

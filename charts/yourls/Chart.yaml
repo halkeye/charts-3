@@ -6,9 +6,9 @@ home: https://yourls.org
 
 type: application
 # Chart Version
-version: 0.0.2
+version: 0.1.0
 # Yourls Version
-appVersion: "1.9"
+appVersion: "1.9.1"
 
 dependencies:
   - name: mysql

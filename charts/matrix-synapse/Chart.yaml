@@ -4,7 +4,7 @@ description: Deployes the Synapse Matrix Homeserver
 icon: https://matrix.org/images/matrix-logo.svg
 home: https://github.com/matrix-org/synapse
 #ChartVersion
-version: 0.1.4
+version: 0.2.0
 # MatrixVersion
 appVersion: v1.66.0
 type: application

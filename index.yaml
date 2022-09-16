@@ -661,6 +661,23 @@ entries:
   privatebin:
   - apiVersion: v2
     appVersion: 1.4.0
+    created: "2022-09-16T13:54:29.308500606Z"
+    description: PrivateBin is a minimalist, open source online pastebin where the
+      server has zero knowledge of pasted data.
+    digest: 2b999d6d86c2093a80d302e577061183bf5e3142c2b800097edc34be8306341c
+    home: https://github.com/PrivateBin/PrivateBin
+    icon: https://privatebin.info/img/logo.png
+    maintainers:
+    - email: 0hlov3@protonmail.com
+      name: 0hlov3
+      url: https://schoenwald.me
+    name: privatebin
+    type: application
+    urls:
+    - https://github.com/Maxxblow/charts/releases/download/privatebin-0.1.5/privatebin-0.1.5.tgz
+    version: 0.1.5
+  - apiVersion: v2
+    appVersion: 1.4.0
     created: "2022-08-11T20:16:17.034246454Z"
     description: PrivateBin is a minimalist, open source online pastebin where the
       server has zero knowledge of pasted data.
@@ -896,4 +913,4 @@ entries:
     urls:
     - https://github.com/Maxxblow/charts/releases/download/yourls-0.0.1/yourls-0.0.1.tgz
     version: 0.0.1
-generated: "2022-09-16T13:50:58.719392502Z"
+generated: "2022-09-16T13:54:29.308662909Z"

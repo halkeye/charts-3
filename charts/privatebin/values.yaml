@@ -71,10 +71,9 @@ securityContext:
   readOnlyRootFilesystem: true
   privileged: false
   allowPrivilegeEscalation: false
-  securityContext:
-    capabilities:
-      drop: 
-        - ALL
+  capabilities:
+    drop: 
+      - ALL
 
 service:
   type: ClusterIP

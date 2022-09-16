@@ -225,6 +225,27 @@ entries:
   joplin-server:
   - apiVersion: v2
     appVersion: 2.7.4-beta
+    created: "2022-09-16T14:43:14.375284097Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: ~11.8.1
+    description: This server allows you to sync any Joplin client
+    digest: 3b4e6c0ce460f7ec9238068f5007011d94195fc3fb7e47a6e5a5de454c6b97bd
+    home: https://github.com/laurent22/joplin
+    icon: https://raw.githubusercontent.com/laurent22/joplin/dev/Assets/LinuxIcons/256x256.png
+    maintainers:
+    - email: 0hlov3@protonmail.com
+      name: 0hlov3
+      url: https://schoenwald.me
+    name: joplin-server
+    type: application
+    urls:
+    - https://github.com/Maxxblow/charts/releases/download/joplin-server-0.1.3/joplin-server-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v2
+    appVersion: 2.7.4-beta
     created: "2022-09-16T14:31:29.809162239Z"
     dependencies:
     - condition: postgresql.enabled
@@ -974,4 +995,4 @@ entries:
     urls:
     - https://github.com/Maxxblow/charts/releases/download/yourls-0.0.1/yourls-0.0.1.tgz
     version: 0.0.1
-generated: "2022-09-16T14:31:29.944073174Z"
+generated: "2022-09-16T14:43:14.375462798Z"

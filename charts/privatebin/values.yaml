@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: privatebin/nginx-fpm-alpine
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   tag: ""
 
 persistence:
@@ -71,6 +71,10 @@ securityContext:
   readOnlyRootFilesystem: true
   privileged: false
   allowPrivilegeEscalation: false
+  securityContext:
+    capabilities:
+      drop: 
+        - ALL
 
 service:
   type: ClusterIP

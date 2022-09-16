@@ -799,6 +799,29 @@ entries:
   writefreely:
   - apiVersion: v2
     appVersion: 0.12.0
+    created: "2022-09-16T13:59:55.118910569Z"
+    dependencies:
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: ~11.0.9
+    description: WriteFreely is a clean, minimalist publishing platform made for writers.
+      Start a blog, share knowledge within your organization, or build a community
+      around the shared act of writing.
+    digest: 9617807e04701a4dd46972d4d4a53b3ebd617183516abc0844ea6d3f59d0be59
+    home: https://github.com/writefreely/writefreely
+    icon: https://camo.githubusercontent.com/4e4760d7cf8313bb68b68c34eb97de424b5dc6129d8233dc64785a6cad376d2b/68747470733a2f2f7772697465667265656c792e6f72672f696d672f7772697465667265656c792e737667
+    maintainers:
+    - email: 0hlov3@protonmail.com
+      name: 0hlov3
+      url: https://schoenwald.me
+    name: writefreely
+    type: application
+    urls:
+    - https://github.com/Maxxblow/charts/releases/download/writefreely-0.1.3/writefreely-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v2
+    appVersion: 0.12.0
     created: "2022-07-20T07:50:29.245049635Z"
     dependencies:
     - condition: mariadb.enabled
@@ -913,4 +936,4 @@ entries:
     urls:
     - https://github.com/Maxxblow/charts/releases/download/yourls-0.0.1/yourls-0.0.1.tgz
     version: 0.0.1
-generated: "2022-09-16T13:54:29.308662909Z"
+generated: "2022-09-16T13:59:55.119294172Z"

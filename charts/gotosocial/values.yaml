@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: superseriousbusiness/gotosocial
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
@@ -122,6 +122,8 @@ gotosocial:
 
 postgresql:
   enabled: false
+  image:
+    pullPolicy: Always
   auth:
     username: gotosocial
     # password:
@@ -133,6 +135,13 @@ postgresql:
       # existingClaim:
       # storageClass:
       size: 10Gi
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        cpu: 250m
+        memory: 512Mi
   volumePermissions:
     enabled: false
 
@@ -170,13 +179,15 @@ podSecurityContext:
   runAsGroup: 1000
   fsGroup: 1000
 
-securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
+securityContext:
+  capabilities:
+    drop: 
+      - ALL
+  readOnlyRootFilesystem: true
+  allowPrivilegeEscalation: false
+  runAsNonRoot: true
+  runAsUser: 1000
+  runAsGroup: 1000
 
 nodeSelector: {}
 

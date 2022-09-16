@@ -6,7 +6,7 @@ home: https://github.com/superseriousbusiness/gotosocial
 
 type: application
 # Chart Version
-version: "0.1.9"
+version: "0.2.0"
 # gotosocial version
 appVersion: "0.4.0"
 

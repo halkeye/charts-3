@@ -34,12 +34,14 @@ data:
     ###########################
     instance-expose-peers: {{ .Values.gotosocial.config.instance.instanceExposePeers | default false }}
     instance-expose-suspended: {{ .Values.gotosocial.config.instance.instanceExposeSuspended | default false }}
+    instance-deliver-to-shared-inboxes: {{ .Values.gotosocial.config.web.instanceDeliverToSharedInboxe | default true }}
     ###########################
     ##### ACCOUNTS CONFIG #####
     ###########################
     accounts-registration-open:  {{ .Values.gotosocial.config.accounts.registrationOpen | default true }}
     accounts-approval-required:  {{ .Values.gotosocial.config.accounts.approvalRequired | default true }}
     accounts-reason-required:  {{ .Values.gotosocial.config.accounts.reasonRequired | default true }}
+    accounts-allow-custom-css: {{ .Values.gotosocial.config.accounts.allowCustomCSS | default false }}
     ########################
     ##### MEDIA CONFIG #####
     ########################
@@ -48,6 +50,8 @@ data:
     media-description-min-chars: {{ .Values.gotosocial.config.media.descriptionMinChars | default 0 }}
     media-description-max-chars: {{ .Values.gotosocial.config.media.descriptionMaxChars | default 500 }}
     media-remote-cache-days: {{ .Values.gotosocial.config.media.descriptionMaxChars | default 30 }}
+    media-emoji-local-max-size: {{ .Values.gotosocial.config.media.emojiLocalMaxSize | default 51200 }}
+    media-emoji-remote-max-size: {{ .Values.gotosocial.config.media.emojiRemoteMaxSize | default 102400 }}
     ##########################
     ##### STORAGE CONFIG #####
     ##########################

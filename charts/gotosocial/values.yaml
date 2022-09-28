@@ -64,15 +64,19 @@ gotosocial:
     instance:
       instanceExposePeers: ""
       instanceExposeSuspended: ""
+      instanceDeliverToSharedInboxe: true
     accounts:
       registrationOpen: ""
       approvalRequired: ""
       reasonRequired: ""
+      allowCustomCSS: ""
     media:
       imageMaxSize: ""
       videoMaxSize: ""
       descriptionMinChars: ""
       descriptionMaxChars: ""
+      emojiLocalMaxSize: ""
+      emojiRemoteMaxSize: ""
     storage:
       backend: ""
       localBasePath: ""

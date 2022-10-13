@@ -6,9 +6,9 @@ description: |
 icon: https://element.io/images/element-logo.svg
 home: https://github.com/vector-im/element-web/
 #ChartVersion
-version: 0.1.7
+version: 0.1.8
 # MatrixVersion
-appVersion: v1.11.8
+appVersion: v1.11.10
 type: application
 
 maintainers:

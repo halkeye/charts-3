@@ -2,7 +2,7 @@
 {{- if (and .Values.postgresql.enabled (and (not .Values.postgresql.auth.password) (not .Values.postgresql.auth.existingSecret))) -}}
 {{-  fail "You must specify a static postgres password or existing secret if using the included postgres chart" -}}
 {{- end -}}
-{{- if (and .Values.redis.enabled (and .Values.redis.usePassword (and (not .Values.redis.auth.password) (not .Values.redis.existingSecret)))) -}}
+{{- if (and .Values.redis.enabled (and .Values.redis.usePassword (and (not .Values.redis.auth.password) (not .Values.redis.auth.existingSecret)))) -}}
 {{-  fail "You must specify a static redis password or existing secret if using the included redis chart" -}}
 {{- end -}}
 ---
@@ -66,12 +66,14 @@ spec:
             - -c
             - |
               cat /synapse/secrets/*.yaml | \
-                sed -e "s/@@POSTGRES_PASSWORD@@/${POSTGRES_PASSWORD:-}/" \
+                sed -e "s/@@@smtpPassword@@@/${smtpPassword:-}/" \
+                    -e "s/@@@RecaptchaPublicKey@@@/${recaptchaPublicKey:-}/" \
+                    -e "s/@@@RecaptchaPrivateKey@@@/${recaptchaPrivateKey:-}/" \
+                    -e "s/@@POSTGRES_PASSWORD@@/${POSTGRES_PASSWORD:-}/" \
                     -e "s/@@REDIS_PASSWORD@@/${REDIS_PASSWORD:-}/" \
                        > /synapse/config/conf.d/secrets.yaml
-
               {{- if .Values.synapse.extraCommands }}
-
+              
               {{ range .Values.synapse.extraCommands }}
               {{ . }}
               {{- end }}
@@ -81,13 +83,36 @@ spec:
                           -c /synapse/config/homeserver.yaml \
                           -c /synapse/config/conf.d/
           env:
+          {{- if .Values.config.email.enabled }}
+          {{- if .Values.config.email.existingSecret }}
+            - name: smtpPassword
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.config.email.existingSecret }}
+                  key: password
+          {{- end }}
+          {{- end }}
+          {{- if .Values.config.recaptcha }}
+          {{- if .Values.config.recaptcha.existingSecret }}
+            - name: recaptchaPublicKey
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.config.recaptcha.existingSecret }}
+                  key: recaptchaPublicKey
+            - name: recaptchaPrivateKey
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.config.recaptcha.existingSecret }}
+                  key: recaptchaPrivateKey
+          {{- end }}
+          {{- end }}
           {{- if or .Values.postgresql.enabled .Values.externalPostgresql.existingSecret }}
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
                   {{- if .Values.postgresql.enabled }}
-                  name: {{ .Values.postgresql.existingSecret | default (include "matrix-synapse.postgresql.fullname" .) }}
-                  key: postgres-password
+                  name: {{ .Values.postgresql.auth.existingSecret | default (include "matrix-synapse.postgresql.fullname" .) }}
+                  key: password
                   {{- else }}
                   name: {{ .Values.externalPostgresql.existingSecret }}
                   key: {{ .Values.externalPostgresql.existingSecretPasswordKey }}
@@ -98,8 +123,8 @@ spec:
               valueFrom:
                 secretKeyRef:
                   {{- if .Values.redis.enabled }}
-                  name: {{ .Values.redis.existingSecret | default (include "matrix-synapse.redis.fullname" .) }}
-                  key: redis-password
+                  name: {{ .Values.redis.auth.existingSecret | default (include "matrix-synapse.redis.fullname" .) }}
+                  key: {{ .Values.redis.auth.existingSecretPasswordKey }}
                   {{- else }}
                   name: {{ .Values.externalRedis.existingSecret }}
                   key: {{ .Values.externalRedis.existingSecretPasswordKey }}

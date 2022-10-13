@@ -66,6 +66,11 @@ Additionally, when using well-known federation, your Synapse cert only needs to 
 More advanced setups can be made using `ingress.hosts`, `ingress.csHosts`, and `ingress.wkHosts` for server-server, client-server, and well-known endpoints respectively.  
 Alternatively, you can use your own ingress setup, or switch the main service to `LoadBalancer` and add a TLS listener.
 
+## Create first User (Admin)
+```shell
+kubectl exec -ti -n synapse $CONTAINERID -- register_new_matrix_user -c /synapse/config/homeserver.yaml -c /synapse/config/conf.d/secrets.yaml -u $USERNAME -p $PASSWORD --admin http://localhost:8008
+```
+
 ## Upgrading
 
 ### To v1.51.0

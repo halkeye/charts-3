@@ -4,7 +4,7 @@ description: Deployes the Synapse Matrix Homeserver
 icon: https://matrix.org/images/matrix-logo.svg
 home: https://github.com/matrix-org/synapse
 #ChartVersion
-version: 0.2.2
+version: 0.2.3
 # MatrixVersion
 appVersion: v1.68.0
 type: application
@@ -20,6 +20,6 @@ dependencies:
     repository: https://charts.bitnami.com/bitnami
     condition: postgresql.enabled
   - name: redis
-    version: ~17.1.6
+    version: ~17.3.2
     repository: https://charts.bitnami.com/bitnami
     condition: redis.enabled

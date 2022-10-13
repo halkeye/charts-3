@@ -128,6 +128,12 @@ data:
     {{- end }}
     max_spider_size: {{ .Values.config.urlPreview.maxSpiderSize | default "10M" }}
     enable_registration: {{ .Values.config.enableRegistration | default false }}
+    enable_registration_without_verification: {{ .Values.config.enableRegistrationWithoutVerification |default false }}
+    enable_registration_captcha: {{ .Values.config.recaptcha.enableRegistrationCaptcha |default false }}
+    {{- with .Values.config.registrationsRequire3pid }}
+    registrations_require_3pid:
+      {{- . | toYaml | nindent 6 }}
+    {{- end }}
     bcrypt_rounds: {{ .Values.config.bcryptRounds | default 12 }}
     allow_guest_access: {{ .Values.config.allowGuestAccess | default false }}
     autocreate_auto_join_rooms: {{ .Values.config.autocreateAutoJoinRooms | default true }}

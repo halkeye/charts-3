@@ -11,21 +11,21 @@ kubectl create secret generic gts-postgresql-secret --from-literal="password=$(o
 ```
 ### Deploy Helm Chart
 ```shell
-helm repo add maxxblow https://maxxblow.de/helm-charts/
+helm repo add maxxblow https://maxxblow.de/charts
 helm repo update
 helm upgrade --install gotosocial maxxblow/gotosocial --namespace gotosocial --create-namespace --set gotosocial.config.host='domain.tld' --set gotosocial.config.accountDomain='domain.tld'
 ```
 ## Create first User
 ```shell
-kubectl exec -ti $CONTERNAR_ID -- /gotosocial/gotosocial --config-path /config/config.yaml admin account create --username $USERNAME --email $USER_EMAIL --password $USER_PASS
+kubectl exec -ti $CONTAINER_ID -- /gotosocial/gotosocial --config-path /config/config.yaml admin account create --username $USERNAME --email $USER_EMAIL --password $USER_PASS
 ```
 
 ```shell
-kubectl exec -ti $CONTERNAR_ID -- /gotosocial/gotosocial --config-path /config/config.yaml admin account confirm --username $USERNAME
+kubectl exec -ti $CONTAINER_ID -- /gotosocial/gotosocial --config-path /config/config.yaml admin account confirm --username $USERNAME
 ```
 
 ```shell
-kubectl exec -ti $CONTERNAR_ID -- /gotosocial/gotosocial --config-path /config/config.yaml admin account promote --username $USERNAME
+kubectl exec -ti $CONTAINER_ID -- /gotosocial/gotosocial --config-path /config/config.yaml admin account promote --username $USERNAME
 ```
 
 ## Example values.yaml

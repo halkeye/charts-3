@@ -75,13 +75,17 @@ spec:
             - name: GTS_DB_TYPE
               value: postgres
             - name: GTS_DB_ADDRESS
-              value: ".Values.externalPostgresql.host"
+              value: {{ .Values.externalPostgresql.host | quote }}
             - name: GTS_DB_PORT
-              value: ".Values.externalPostgresql.port"
+              value: {{ .Values.externalPostgresql.port | quote }}
             - name: GTS_DB_USER
-              value: "{{ .Values.externalPostgresql.username }}"
+              value: {{ .Values.externalPostgresql.username | quote }}
             - name: GTS_DB_DATABASE
-              value: "{{ .Values.externalPostgresql.database }}"
+              value: {{ .Values.externalPostgresql.database | quote }}
+            - name: GTS_DB_TLS_MODE
+              value: {{ .Values.externalPostgresql.tls_mode | default "disable" | quote }}
+            - name: GTS_DB_CA_CERT
+              value: {{ .Values.externalPostgresql.ca_cert | default "" | quote }}
             - name: GTS_DB_PASSWORD
               {{ if .Values.externalPostgresql.existingSecret }}
               valueFrom:
@@ -89,7 +93,7 @@ spec:
                   name: {{ .Values.externalPostgresql.existingSecret }}
                   key: {{ .Values.externalPostgresql.existingSecretPasswordKey }}
               {{ else }}
-              value: {{ .Values.externalPostgresql.password }}
+              value: {{ .Values.externalPostgresql.password | quote }}
               {{ end }}
           {{ else }}
             - name: GTS_DB_TYPE

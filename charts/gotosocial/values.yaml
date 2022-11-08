@@ -161,6 +161,10 @@ externalPostgresql:
   # existingSecret: postgres-secrets
   ## Password key to be retrieved from existing secret
   # existingSecretPasswordKey: postgres-password
+  ## TLS Mode
+  # tls_mode: disable
+  ## CA Cert to use when tls mode is in required state
+  # ca_cert:
   database: GoToSocial
 
 imagePullSecrets: []

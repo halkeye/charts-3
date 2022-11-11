@@ -1,4 +1,7 @@
 {{- $fullName := include "gotosocial.fullname" . -}}
+{{- $podAnnotations := .Values.podAnnotations }}
+{{- $secretAnnotation := dict "checksum/secrets" (include (print $.Template.BasePath "/secrets.yaml") . | sha256sum) }}
+{{- $podAnnotations := merge $podAnnotations $secretAnnotation }}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -15,7 +18,7 @@ spec:
       {{- include "gotosocial.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
+      {{- with $podAnnotations }}
       annotations:
         {{- toYaml . | nindent 8 }}
       {{- end }}

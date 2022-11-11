@@ -6,7 +6,7 @@ home: https://github.com/superseriousbusiness/gotosocial
 
 type: application
 # Chart Version
-version: "0.2.4"
+version: "0.3.0"
 # gotosocial version
 appVersion: "0.5.2"
 
@@ -20,3 +20,11 @@ dependencies:
     version: ~11.0.06
     repository: https://charts.bitnami.com/bitnami
     condition: postgresql.enabled
+
+annotations:
+  artifacthub.io/changes: |
+    - Move everything to secrets
+  artifacthub.io/containsSecurityUpdates: "false"
+  artifacthub.io/images: |
+    - name: gotosocial
+      image: superseriousbusiness/gotosocial:latest
